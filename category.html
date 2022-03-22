@@ -8,13 +8,13 @@
     <title>Categories</title>
 </head>
 
-<body>
+<body onload="generateOrderNum()">
     <div class="content-wrapper">
         <div id="category-part">
             <div class="heading">
                 <h1>Categories</h1>
                 <form action="" class="searchbar">
-                    <input type="search" name="search" id="search" placeholder="Search...">
+                    <input type="search" name="search" id="search" placeholder="Search item...">
                     <button id="search-btn" type="submit"><img src="/images/magnifying-glass.png" alt="" srcset=""
                             width="20" height="20"></button>
                 </form>
@@ -66,7 +66,7 @@
         </div>
         <div id="order-part">
             <div class="order-details">
-                <h2>Order #201</h2>
+                <h2>Order <span class="orderNum">#201</span></h2>
                 <hr>
                 <div class="purchased">
                     <h3>item#1</h3>
@@ -75,8 +75,8 @@
                         <p class="quantity">1</p>
                         <button class="plus">+</button>
                     </div>
+                    <hr class="item-hr">
                 </div>
-                <hr class="item-hr">
                 <div class="purchased">
                     <h3>item#1</h3>
                     <div class="purchased-num">
@@ -84,8 +84,8 @@
                         <p class="quantity">1</p>
                         <button class="plus">+</button>
                     </div>
+                    <hr class="item-hr">
                 </div>
-                <hr class="item-hr">
                 <div class="purchased">
                     <h3>item#1</h3>
                     <div class="purchased-num">
@@ -93,8 +93,8 @@
                         <p class="quantity">1</p>
                         <button class="plus">+</button>
                     </div>
+                    <hr class="item-hr">
                 </div>
-                <hr class="item-hr">
                 <div class="purchased">
                     <h3>item#1</h3>
                     <div class="purchased-num">
@@ -102,8 +102,8 @@
                         <p class="quantity">1</p>
                         <button class="plus">+</button>
                     </div>
+                    <hr class="item-hr">
                 </div>
-                <hr class="item-hr">
                 <div class="purchased">
                     <h3>item#1</h3>
                     <div class="purchased-num">
@@ -111,54 +111,15 @@
                         <p class="quantity">1</p>
                         <button class="plus">+</button>
                     </div>
+                    <hr class="item-hr">
                 </div>
-                <hr class="item-hr">
-                <div class="purchased">
-                    <h3>item#1</h3>
-                    <div class="purchased-num">
-                        <button class="minus">-</button>
-                        <p class="quantity">1</p>
-                        <button class="plus">+</button>
-                    </div>
-                </div>
-                <hr class="item-hr">
-                <div class="purchased">
-                    <h3>item#1</h3>
-                    <div class="purchased-num">
-                        <button class="minus">-</button>
-                        <p class="quantity">1</p>
-                        <button class="plus">+</button>
-                    </div>
-                </div>
-                <hr class="item-hr">
-                <div class="purchased">
-                    <h3>item#1</h3>
-                    <div class="purchased-num">
-                        <button class="minus">-</button>
-                        <p class="quantity">1</p>
-                        <button class="plus">+</button>
-                    </div>
-                </div>
-                <hr class="item-hr">
-                <div class="purchased">
-                    <h3>item#1</h3>
-                    <div class="purchased-num">
-                        <button class="minus">-</button>
-                        <p class="quantity">1</p>
-                        <button class="plus">+</button>
-                    </div>
-                </div>
-                <hr class="item-hr">
-
-
-
             </div>
             <div class="chechout">
                 <ul class="sub">
-                    <li>Subtotal: </li>
-                    <li>Discount: </li>
-                    <li>Tax: </li>
-                    <li>Total: </li>
+                    <li>Subtotal: <span id="subtotal"></span></li>
+                    <li>Discount: <span id="discoun"></span></li>
+                    <li>Tax: <span id="tax"></span></li>
+                    <li>Total: <span id="total"></span></li>
                 </ul>
             </div>
             <div class="functionBtns">
@@ -171,7 +132,7 @@
                 <a href="">
                     <div class="functionBtns-item"> Customer Info</div>
                 </a>
-                <a href="">
+                <a href="MainMenu.html">
                     <div class="functionBtns-item"> Back to Menu</div>
                 </a>
             </div>
@@ -189,67 +150,63 @@
         <div class="category-items">
             <div class="sub-cat-item">
                 <p class="item-name">Apple</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Banana</p>
-                <p class="item-price">$2.99/pc</p>
+                <p class="item-price">$2.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Peach</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Pineapple</p>
-                <p class="item-price">$3.99/pc</p>
+                <p class="item-price">$3.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Grapes</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Grava</p>
-                <p class="item-price">$3.99/pc</p>
-            </div>
-            <div class="sub-cat-item">
-                <p class="item-name">Carrot</p>
-                <p class="item-price">$3.99/pc</p>
+                <p class="item-price">$3.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Tomato</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Potato</p>
-                <p class="item-price">$3.99/pc</p>
+                <p class="item-price">$3.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Celery</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Cabbage</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Kale</p>
-                <p class="item-price">$3.99/pc</p>
+                <p class="item-price">$3.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Lettuce</p>
-                <p class="item-price">$3.99/pc</p>
+                <p class="item-price">$3.99 <span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Bok Choy</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Spinach</p>
-                <p class="item-price">$1.99/pc</p>
+                <p class="item-price">$1.99<span>/pc</span></p>
             </div>
             <div class="sub-cat-item">
                 <p class="item-name">Romaine Hearts</p>
-                <p class="item-price">$2.99/pc</p>
+                <p class="item-price">$2.99<span>/pc</span></p>
             </div>
         </div>
         <hr class="bar">

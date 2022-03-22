@@ -110,6 +110,7 @@ input#search, #search-btn{
 
 .purchased{
     position: inherit;
+    border: none;
 }
 .purchased>h3{
     display: inline;
@@ -119,6 +120,7 @@ input#search, #search-btn{
 .sub>li{
     list-style-type: none;
     text-align: right;
+    font-weight: 500;
     /* margin: 8%; */
 }
 
