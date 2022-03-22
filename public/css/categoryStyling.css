@@ -1,10 +1,10 @@
 * {
     box-sizing: border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Cal Sans', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    min-width: 1000px;
+    min-width: 100%;
 }
 .content-wrapper {
     display: flex;
