@@ -5,8 +5,16 @@ const categoryItemArr = Array.from(document.querySelectorAll('.category-item'));
 const categoryItemNames = Array.from(document.querySelectorAll('.category-item a'));
 const modalHeader = document.querySelector('.modal');
 const subCatItemArr = Array.from(document.querySelectorAll('.sub-cat-item'));
-
+const orderNum = document.querySelector('.orderNum');
 let count = 0;
+let randomOrderNum;
+
+function generateOrderNum(){
+  let random = Math.floor(1000 + Math.random() * 9000);
+  // console.log(random)
+  randomOrderNum = `#${random}`
+  orderNum.innerHTML = randomOrderNum;
+}
 
 categoryItemArr.forEach(item => {
   // console.log(item);
@@ -26,10 +34,10 @@ function popUp(event){
   // console.log(divModal.children);
   // console.log(divModal.childNodes);
 
-  console.log(event);
-  console.log(event.target.innerText);
-  console.log(this);
-  console.log(this.innerText);
+  // console.log(event);
+  // console.log(event.target.innerText);
+  // console.log(this);
+  // console.log(this.innerText);
 
   modalHeader.insertAdjacentHTML(`afterbegin`,`<h2 class="modal-name">${this.innerText}</h2>`);
 }
@@ -43,17 +51,45 @@ subCatItemArr.forEach(item => {
   item.addEventListener('click', addToCart);
 })
 
+//when sub-cat-item is selected
+let itemPriceDouble = 0;
+let tax = 0;
+let total = 0;
 function addToCart(){
-  // console.log(this.children[0].innerText);
-  count += 1;
-  if(count <= 10){
-    document.querySelector('.selected-items').innerHTML += `${this.children[0].innerText}\n ${this.children[1].innerText} + `;
-  document.querySelector('.num-of-items-selected').innerHTML = `Number of items selected: ${count}`;
-  }else{
-    document.querySelector('.selected-items').innerHTML = "";
-    document.querySelector('.num-of-items-selected').innerHTML = `Selected item over limitaiton`;
-    count = 0;
-  }
+  let itemName = this.children[0].innerText;
+  let itemPrice = this.children[1].innerHTML;
+  itemPrice = itemPrice.slice(1,5);
+  let itemPriceParse = parseFloat(itemPrice);
+  // count += 1;
+  // if(count <= 10){
+  //   document.querySelector('.selected-items').innerHTML += `${this.children[0].innerText}\n ${this.children[1].innerText} + `;
+  // document.querySelector('.num-of-items-selected').innerHTML = `Number of items selected: ${count}`;
+  // }else{
+  //   document.querySelector('.selected-items').innerHTML = "";
+  //   document.querySelector('.num-of-items-selected').innerHTML = `Selected item over limitaiton`;
+  //   count = 0;
+  // }
+
+  const item = `<div class="purchased">
+                  <span class="iName">${itemName}</span>
+                  <span class="iPrice">${itemPriceParse}</span>
+                  <hr class="item-hr">
+              </div>`;
+
+                // <div class="purchased-num">
+                //     <button class="minus">-</button>
+                //     <p class="quantity">1</p>
+                //     <button class="plus">+</button>
+                // </div>
+  // console.log(document.querySelector('.order-details').children[1]);
+  document.querySelector('.order-details').children[1].insertAdjacentHTML(`afterend`,`${item}`);
+  itemPriceDouble += itemPriceParse;
+  tax += itemPriceParse*0.05;
+  total += (itemPriceParse+tax); //the calculation of total seems not correct...
+  document.querySelector('#subtotal').innerHTML = itemPriceDouble.toFixed(2);
+  document.querySelector('#tax').innerHTML = tax.toFixed(2);
+  document.querySelector('#total').innerHTML = total.toFixed(2); 
+  document.querySelector('.modal').style.visibility = "hidden";
 }
 
 document.querySelector('.modal-close-btn').addEventListener('click',function(){
@@ -77,11 +113,15 @@ const quantityArr = Array.from(document.querySelectorAll('.quantity'));
 const plusArr = Array.from(document.querySelectorAll('.plus'));
 console.log(quantityArr)
 quantityArr.forEach(qty => {
-  document.querySelector.addEventListener('click',()=>{
-    quantityNum += 1;
-    qty = `${quantityNum}`;
-    qty.innerHTML = quantityNum;
-    console.log(quantityNum);
+//   document.querySelector.addEventListener('click',()=>{
+//     quantityNum += 1;
+//     qty = `${quantityNum}`;
+//     qty.innerHTML = quantityNum;
+//     console.log(quantityNum);
+// })
+console.log("quantity add/deduct function not yet been done");
 })
-})
+
+
+
 
