@@ -128,6 +128,9 @@ input#search, #search-btn{
     display: inline;
 }
 
+.del{
+    float: right;
+}
 .purchased-num{
     position: relative;
     left: 75%;
@@ -166,7 +169,7 @@ input#search, #search-btn{
     transform: translate(-50%,-50%);
     background-color:antiquewhite;
     width: 700px;
-    height: 550px;
+    height: 450px;
     box-shadow: 2px 2px 5px rgb(95, 94, 94);
     border-radius: 10px;
     overflow: hidden;
