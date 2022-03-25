@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
     <title>Staff Management</title>
 </head>
 
@@ -25,7 +25,7 @@
                                 srcset="" width="25" height="25"></button>
                     </div>
                 </div>
-                <table class="db-table staff bg-gray">
+                <table class="db-table bg-gray">
                     <thead>
                         <tr>
                             <th class="bg-green">First Name</th>
@@ -113,53 +113,90 @@
                             <td>DUMMY</td>
                             <td>DUMMY</td>
                         </tr>
-                        <tr>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                        </tr>
-                        <tr>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                        </tr>
-                        <tr>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                        </tr>
-                        <tr>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                        </tr>
-                        <tr>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                            <td>DUMMY</td>
-                        </tr>
+
 
                     </tbody>
                 </table>
             </div>
             <div class="btns-wrapper">
-                <button>Add</button>
-                <button>Edit</button>
-                <button>Delete</button>
-                <button>Back to Menu</button>
+                <button href="#add-popup" class="db-btns non-outline shadows">Add</button>
+                <button href="#edit-popup" class="db-btns non-outline shadows">Edit</button>
+                <button href="#delete-popup" class="db-btns non-outline shadows">Delete</button>
+                <button id="backBtn" class="db-btns non-outline shadows">Back to Menu</button>
             </div>
         </div>
     </div>
+
+    <!--Add button modal -->
+    <div class="modal-container" id="add-popup">
+        <div class="add-modal bg-gray"> 
+            <h4 class="modal-title">Add Staff</h4>
+            <button type="button" id="modal-close-btn" class="modal-close-btn" onclick="closeModal(this)"><strong>X</strong></button>
+            <form method="POST" class="add-form">
+                <label class="add-form-label">First Name : </label>
+                <input type="text"> 
+
+                <label class="add-form-label">Last Name : </label>
+                <input type="text"> 
+
+                <label class="add-form-label">Employee ID : </label>
+                <input type="text">
+
+                <label class="add-form-label">Position : </label>
+                <select>
+                    <option>Admin</option>
+                    <option>Employee</option>
+                </select>
+
+                <label class="add-form-label">Date of Birth :</label>
+                <input type="datetime">
+
+                <input class="add-form-submit non-outline" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+
+    <!--Edit button modal-->
+    <!-- TODO: CHANGE CLASS NAME & HOW TO SPECIFY AN USER TO BE UPDATED-->
+    <div class="modal-container" id="edit-popup">
+        <div class="add-modal bg-gray"> 
+            <h4 class="modal-title">Edit Staff</h4>
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+            <form method="POST" class="add-form">
+                <label class="add-form-label">First Name : </label>
+                <input type="text"> 
+
+                <label class="add-form-label">Last Name : </label>
+                <input type="text"> 
+
+                <label class="add-form-label">Employee ID : </label>
+                <input type="text">
+
+                <label class="add-form-label">Position : </label>
+                <select>
+                    <option>Admin</option>
+                    <option>Employee</option>
+                </select>
+
+                <label class="add-form-label">Date of Birth :</label>
+                <input type="datetime">
+
+                <input class="add-form-submit non-outline" type="submit" value="Edit">
+            </form>
+        </div>
+    </div>
+
+    <!--Delete button modal-->
+    <div class="modal-container" id="delete-popup">
+        <div class="delete-modal bg-gray">
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+            <p>Are you sure you want to delete the staff? </p>
+            <button class="delete-btns non-outline">Yes</button>
+        </div>
+    </div>
+    
+    
+    <script src="management.js"></script>
 </body>
 
 </html>
