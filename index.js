@@ -4,7 +4,8 @@ const path = require("path");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "/pulic")));
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/Login", (req, res) => {
   res.sendFile(__dirname + "/Login.html");
