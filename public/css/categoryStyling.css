@@ -170,7 +170,7 @@ input#search,
   transform: translate(-50%, -50%);
   background-color: antiquewhite;
   width: 700px;
-  height: 450px;
+  min-height: 450px;
   box-shadow: 2px 2px 5px rgb(95, 94, 94);
   border-radius: 10px;
   overflow: hidden;
@@ -201,7 +201,7 @@ input#search,
 }
 
 .sub-cat-item {
-  height: 4em;
+  height: 5em;
   width: 10em;
   border-radius: 0.5em;
   margin: 5px;

@@ -16,7 +16,6 @@ function generateOrderNum() {
   randomOrderNum = `#${random}`;
   orderNum.innerHTML = randomOrderNum;
 }
-
 categoryItemArr.forEach((item) => {
   // console.log(item);
   item.addEventListener("click", popUp);
@@ -27,11 +26,10 @@ function popUp(event) {
   document.querySelector(".modal").style.visibility = "visible";
   let divModal = document.querySelector(".modal");
 
-  // document.querySelector('.selected-items').innerHTML = "";
-
   if (divModal.hasChildNodes && divModal.firstChild.className == "modal-name") {
     divModal.removeChild(divModal.firstChild);
   }
+  // console.log(this);
   // console.log(divModal.children);
   // console.log(divModal.childNodes);
 
@@ -44,6 +42,90 @@ function popUp(event) {
     `afterbegin`,
     `<h2 class="modal-name">${this.innerText}</h2>`
   );
+
+  subCatItemArr.forEach((item) => {
+    console.log(item.firstElementChild.className);
+  });
+  switch (divModal.firstChild.innerHTML) {
+    case "Fruits &amp; Vegetables":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Fruits_and_Vegetables")){
+          item.style.display = "none";
+        }
+      })
+      break;
+    case "Dairy &amp; Eggs":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Dairy_and_eggs")){
+          item.style.display = "none";
+        }
+      })
+      break;
+    case "Bakery":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Bakery")){
+          item.style.display = "none";
+        }
+      })
+      break;
+    case "Meat &amp; Seafood":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Meat_and_Seafood")){
+          item.style.display = "none";
+        }
+      })
+      break;
+    case "Snacks &amp; Cookies":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Snacks_and_Cookies")){
+          item.style.display = "none";
+        }
+      })
+      break;
+    case "Beverages":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Beverages")){
+          item.style.display = "none";
+        }
+      })
+      break;
+    case "Frozen Food":
+      
+      break;
+    case "Prepared Food":
+      
+      break;
+    case "Pantry":
+      
+      break;
+    case "Pet care":
+      
+      break;
+    case "Floral &amp; Garden":
+      
+      break;
+    case "International":
+      
+      break;
+    case "Baby Care":
+      
+      break;
+    case "Home":
+      
+      break;
+    case "Health &amp; Beauty":
+      
+      break;
+    case "Cleaning":
+      
+      break;
+  }
 }
 
 // console.log(categoryItemArr);
@@ -60,6 +142,7 @@ let sele = 0;
 let itemPriceDouble = 0;
 let tax = 0;
 let total = 0;
+
 function addToCart() {
   let itemName = this.children[0].innerText;
   let itemPrice = this.children[1].innerHTML;
@@ -143,18 +226,18 @@ document
 //   document.querySelector('.num-of-items-selected').innerHTML = `Number of items selected: ${count}`;
 // })
 
-let quantity = document.querySelector(".quantity").innerHTML;
-let quantityNum = Number(document.querySelector(".quantity").innerHTML);
+// let quantity = document.querySelector(".quantity").innerHTML;
+// let quantityNum = Number(document.querySelector(".quantity").innerHTML);
 
-const quantityArr = Array.from(document.querySelectorAll(".quantity"));
-const plusArr = Array.from(document.querySelectorAll(".plus"));
-console.log(quantityArr);
-quantityArr.forEach((qty) => {
-  //   document.querySelector.addEventListener('click',()=>{
-  //     quantityNum += 1;
-  //     qty = `${quantityNum}`;
-  //     qty.innerHTML = quantityNum;
-  //     console.log(quantityNum);
-  // })
-  console.log("quantity add/deduct function not yet been done");
-});
+// const quantityArr = Array.from(document.querySelectorAll(".quantity"));
+// const plusArr = Array.from(document.querySelectorAll(".plus"));
+// console.log(quantityArr);
+// quantityArr.forEach((qty) => {
+//   document.querySelector.addEventListener('click',()=>{
+//     quantityNum += 1;
+//     qty = `${quantityNum}`;
+//     qty.innerHTML = quantityNum;
+//     console.log(quantityNum);
+// })
+//   console.log("quantity add/deduct function not yet been done");
+// });

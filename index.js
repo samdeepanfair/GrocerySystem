@@ -1,13 +1,32 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const mongoose = require("mongoose");
+const cheerio = require("cheerio");
+$ = cheerio.load("category.html");
 const inventoryDB = require("./inventoryModel");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
 app.use(bodyParser.json());
+
+mongoose.connect("mongodb://localhost:27017/categoryDB", {
+  useNewUrlParser: true,
+});
+
+// const itemSchema = mongoose.Schema({
+//   itemcategory: { type: String, required: true },
+//   itemId: { type: Number, required: true, unique: true },
+//   itemname: { type: String, required: true },
+//   itemPrice: { type: Number, required: true },
+//   Stock: { type: Number, required: true },
+//   itemSold: { type: Number, required: true },
+// });
+
+// const Item = mongoose.model("Item", itemSchema);
 
 app.get("/Login", (req, res) => {
   res.sendFile(__dirname + "/Login.html");
@@ -38,7 +57,17 @@ app.get("/Staffs", (req, res) => {
 });
 
 app.get("/category", (req, res) => {
-  res.sendFile(__dirname + "/category.html");
+  // res.sendFile(__dirname + "/category.html");
+  // res.render("category");
+  // const cat = "Dairy and eggs";
+  return inventoryDB.find(function (err, items) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(items);
+      res.render("category", { items });
+    }
+  });
 });
 
 app.post("/category", async (req, res) => {

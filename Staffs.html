@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Staff Management</title>
 </head>
 
@@ -129,15 +129,16 @@
 
     <!--Add button modal -->
     <div class="modal-container" id="add-popup">
-        <div class="add-modal bg-gray"> 
+        <div class="add-modal bg-gray">
             <h4 class="modal-title">Add Staff</h4>
-            <button type="button" id="modal-close-btn" class="modal-close-btn" onclick="closeModal(this)"><strong>X</strong></button>
+            <button type="button" id="modal-close-btn" class="modal-close-btn"
+                onclick="closeModal(this)"><strong>X</strong></button>
             <form method="POST" class="add-form">
                 <label class="add-form-label">First Name : </label>
-                <input type="text"> 
+                <input type="text">
 
                 <label class="add-form-label">Last Name : </label>
-                <input type="text"> 
+                <input type="text">
 
                 <label class="add-form-label">Employee ID : </label>
                 <input type="text">
@@ -159,15 +160,15 @@
     <!--Edit button modal-->
     <!-- TODO: CHANGE CLASS NAME & HOW TO SPECIFY AN USER TO BE UPDATED-->
     <div class="modal-container" id="edit-popup">
-        <div class="add-modal bg-gray"> 
+        <div class="add-modal bg-gray">
             <h4 class="modal-title">Edit Staff</h4>
             <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
             <form method="POST" class="add-form">
                 <label class="add-form-label">First Name : </label>
-                <input type="text"> 
+                <input type="text">
 
                 <label class="add-form-label">Last Name : </label>
-                <input type="text"> 
+                <input type="text">
 
                 <label class="add-form-label">Employee ID : </label>
                 <input type="text">
@@ -194,8 +195,8 @@
             <button class="delete-btns non-outline">Yes</button>
         </div>
     </div>
-    
-    
+
+
     <script src="management.js"></script>
 </body>
 
