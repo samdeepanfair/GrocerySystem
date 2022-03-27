@@ -143,10 +143,12 @@ let itemPriceDouble = 0;
 let tax = 0;
 let total = 0;
 
+//Add items from category to order
 function addToCart() {
-  let itemName = this.children[0].innerText;
-  let itemPrice = this.children[1].innerHTML;
-  itemPrice = itemPrice.slice(1, 5);
+  // console.log(this.children[3].innerHTML);
+  let itemName = this.children[1].innerText;
+  let itemPrice = this.children[3].innerHTML;
+  // itemPrice = itemPrice.slice(1, 5);
   let itemPriceParse = parseFloat(itemPrice);
   console.log(itemPriceParse);
   // count += 1;
