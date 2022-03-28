@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= titleName %> Management</title>
+</head>
+<body class="bg-gray">
+    <div class="content-wrapper-lg">
+        <div class="header">
+            <h3><%= titleName %> Management</h3>
+            <hr class="heading-line lines">
+        </div>
+        <div class="content-block">
+            <div class="table-wrapper">
+                <div class="table-header">
+                    <h4 class="table-name"><%= itemName %> List</h4>
+                    <div class="search">
+                        <input class="input-search" type="text" placeholder="Search..">
+                        <button class="search-btn" type="submit"><img src="/images/magnifying-glass.png" alt="" srcset="" 
+                            width="25" height="25"></button>
+                    </div>
+                </div>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="db-table bg-gray">
+                        <thead>
+                            <tr>    
+                                <th class="bg-green"><%= fields.col1 %></th>
+                                <th class="bg-dgray"><%= fields.col2 %></th>
+                                <th class="bg-green"><%= fields.col3 %></th>
+                                <th class="bg-dgray"><%= fields.col4 %></th>
+                                <th class="bg-green"><%= fields.col5 %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% items.forEach((item)=>{ %>
+                            <tr>
+                                <td><%= item.itemname %></td>
+                                <td><%= item.itemId %></td>
+                                <td><%= item.itemcategory %></td>
+                                <td><%= item.Stock %></td>
+                                <td><%= item.itemPrice %></td>
+                            </tr>
+                            <% }) %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="btns-wrapper">
+                <button href="#add-popup-product" class="db-btns non-outline shadows">Add</button>
+                <button href="#edit-popup-product" class="db-btns non-outline shadows">Edit</button>
+                <button href="#delete-popup" class="db-btns non-outline shadows">Delete</button>
+                <form action="/MainMenu" method="GET">
+                    <input type="submit" class="db-btns non-outline shadows" value="Back to Menu" />
+                 </form>
+            </div>
+        </div>
+    </div>
+
+        <!--Add button modal -->
+        <div class="modal-container" id="add-popup-product">
+            <div class="add-modal bg-gray">
+                <h4 class="modal-title">Add Product</h4>
+                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                <form method="POST" class="add-form">
+                    <label class="add-form-label">Product Name : </label>
+                    <input type="text">
+    
+                    <label class="add-form-label">Product ID : </label>
+                    <input type="text">
+    
+                    <label class="add-form-label">Category : </label>
+                    <input type="text">
+    
+                    <label class="add-form-label">Quantity : </label>
+                    <input type="number">
+    
+                    <label class="add-form-label">Price :</label>
+                    <input type="number" min="0.00" max="10000.00" step="0.01">
+    
+                    <input class="add-form-submit non-outline" type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    
+        <!--Edit button modal-->
+        <!-- TODO: CHANGE CLASS NAME & HOW TO SPECIFY AN USER TO BE UPDATED-->
+        <div class="modal-container" id="edit-popup-product">
+            <div class="add-modal bg-gray">
+                <h4 class="modal-title">Edit Product</h4>
+                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                <form method="POST" class="add-form">
+                    <label class="add-form-label">Product Name : </label>
+                    <input type="text">
+    
+                    <label class="add-form-label">Product ID : </label>
+                    <input type="text">
+    
+                    <label class="add-form-label">Category : </label>
+                    <input type="text">
+    
+                    <label class="add-form-label">Quantity : </label>
+                    <input type="number">
+    
+                    <label class="add-form-label">Price :</label>
+                    <input type="number" min="0.00" max="10000.00" step="0.01">
+
+                    <input class="add-form-submit non-outline" type="submit" value="Edit">
+                </form>
+            </div>
+        </div>
+    
+        <!--Delete button modal-->
+        <div class="modal-container" id="delete-popup">
+            <div class="delete-modal bg-gray">
+                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                <p>Are you sure you want to delete this <span style="text-transform:lowercase"><%= itemName %></span> ? </p>
+                <button class="delete-btns non-outline">Yes</button>
+            </div>
+        </div>
+
+
+    <script src="/js/management.js"></script>
+</body>
+
+</html>

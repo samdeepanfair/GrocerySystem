@@ -188,17 +188,21 @@ h4 {
   margin-bottom: 20px;
 }
 
-table.db-table {
-  border-collapse: collapse;
-  border-style: hidden;
-  width: 100%;
-  /* height: 300px; */
+.my-custom-scrollbar {
+    position: relative;
+    height: 500px;
+    overflow: auto;
 }
 
-/* TODO: HOW TO HAVE VERTICAL SCROLLBAR  */
+.table-wrapper-scroll-y {
+    display: block;
+}
 
-/* 
-table.db-table tbody, table thead { display: block; } */
+table.db-table {
+    border-collapse: collapse;
+    border-style: hidden;
+    width: 100%;
+}
 
 table.db-table tbody {
   overflow-y: auto;
@@ -212,14 +216,15 @@ table th {
   border: 1px solid black;
 }
 
-table.db-table th {
+table.db-table thead th {
   height: 40px;
   font-size: 1.2rem;
 }
 
-table.db-table td {
+table.db-table tbody td {
   line-height: 30px;
 }
+
 
 .btns-wrapper .db-btns {
   width: 80%;
@@ -230,7 +235,7 @@ table.db-table td {
   margin-bottom: 20px;
 }
 
-/*** MODAL ***/
+/*********************** MODAL - Management **********************/
 
 .modal-container {
   display: none; /** default: none**/
@@ -274,7 +279,7 @@ table.db-table td {
 .add-form {
   font-size: 1.3rem;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1.3fr 2fr;
   grid-gap: 20px;
 }
 

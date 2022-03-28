@@ -54,7 +54,26 @@ app.use("/MainMenu", (req, res) => {
 });
 
 app.get("/Inventory", (req, res) => {
-  res.sendFile(__dirname + "/Inventory.html");
+  //res.sendFile(__dirname + "/Inventory.html");
+
+  return inventoryDB.find(function(err, items) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.render("management", {
+        titleName: "Inventory",
+        itemName: "Product",
+        fields: {
+          col1: "Product Name",
+          col2: "Product ID",
+          col3: "Category",
+          col4: "Quantity",
+          col5: "Price"
+        },
+        items: items
+      }); 
+    }
+  });
 });
 
 app.get("/Staffs", (req, res) => {

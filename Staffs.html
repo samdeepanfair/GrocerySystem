@@ -122,7 +122,9 @@
                 <button href="#add-popup" class="db-btns non-outline shadows">Add</button>
                 <button href="#edit-popup" class="db-btns non-outline shadows">Edit</button>
                 <button href="#delete-popup" class="db-btns non-outline shadows">Delete</button>
-                <button id="backBtn" class="db-btns non-outline shadows">Back to Menu</button>
+                <form action="/MainMenu" method="GET">
+                    <input type="submit" class="db-btns non-outline shadows" value="Back to Menu" />
+                 </form>
             </div>
         </div>
     </div>
@@ -131,8 +133,7 @@
     <div class="modal-container" id="add-popup">
         <div class="add-modal bg-gray">
             <h4 class="modal-title">Add Staff</h4>
-            <button type="button" id="modal-close-btn" class="modal-close-btn"
-                onclick="closeModal(this)"><strong>X</strong></button>
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
             <form method="POST" class="add-form">
                 <label class="add-form-label">First Name : </label>
                 <input type="text">
@@ -197,7 +198,7 @@
     </div>
 
 
-    <script src="management.js"></script>
+    <script src="/js/management.js"></script>
 </body>
 
 </html>

@@ -14,6 +14,7 @@ const itemSchema = mongoose.Schema({
 });
 
 const Item = mongoose.model("Item", itemSchema);
+
 ////////////////////////////////Fruits and Vegetables///////////////////////////////////////
 const apple = new Item({
   itemcategory: "Fruits and Vegetables",
