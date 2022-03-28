@@ -143,7 +143,7 @@ input#search,
 
 .functionBtns-item {
   flex-direction: row;
-  background-color: chartreuse;
+  background-color: #69ff66;
   box-shadow: 2px 2px 5px lightgray;
   font-weight: 600;
   border-radius: 0.5em;
@@ -165,7 +165,7 @@ input#search,
   visibility: hidden;
   /* opacity: 1; */
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: antiquewhite;
@@ -235,4 +235,56 @@ input#search,
 .selected-items,
 .num-of-items-selected {
   margin: 1em;
+}
+
+.modal-pay{
+  /* visibility: hidden; */
+  /* opacity: 1; */
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color:rgb(200, 214, 240) ;
+  width: 500px;
+  min-height: 450px;
+  box-shadow: 2px 2px 5px rgb(95, 94, 94);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.4s ease-in;
+}
+
+.pay-header>h3{
+  /* background-color: aqua; */
+  text-align: center;
+  margin-top: 1em;
+  font-size: x-large;
+  background-color: rgb(135, 167, 228);
+  height: 2em;
+}
+
+
+label[for="grandtotal"],input[type="text"],.pay-button{
+  display: block;
+  text-align: center;
+  font-size: larger;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.cart-items{
+  font-size: smaller;
+}
+
+.pay-button{
+  margin-top: 30px;
+}
+
+.pay-button>input[type="button"], .pay-button>input[type="submit"]{
+  text-align: center;
+  margin-top: 30px;
+  font-size: large;
+  width: 5em;
+  background-color: rgb(135, 167, 228);
+  border-radius: 0.5em;
+  cursor: pointer;
 }

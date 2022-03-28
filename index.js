@@ -2,16 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
-const cheerio = require("cheerio");
-$ = cheerio.load("category.html");
-const inventoryDB = require("./inventoryModel");
+// const cheerio = require("cheerio");
+// $ = cheerio.load("category.html");
+const inventoryModel = require("./inventoryModel");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
-app.use(bodyParser.json());
+
 
 mongoose.connect("mongodb://localhost:27017/categoryDB", {
   useNewUrlParser: true,
@@ -28,17 +29,21 @@ mongoose.connect("mongodb://localhost:27017/categoryDB", {
 
 // const Item = mongoose.model("Item", itemSchema);
 
+app.get("/", (req,res)=> {
+  res.redirect("/Login");
+})
+
 app.get("/Login", (req, res) => {
   res.sendFile(__dirname + "/Login.html");
 });
 
 app.post("/Login", (req, res) => {
   console.log("We are in Login page");
-  // let myid = req.body.myId;
-  // let mypassword = req.body.mypassword;
+  let myid = req.body.myId;
+  let mypassword = req.body.mypassword;
   // console.log(myid);
   // console.log(mypassword);
-
+  
   //validate user data here, if correct, go to the mainmenu
   res.redirect("/MainMenu");
 });
@@ -60,7 +65,7 @@ app.get("/category", (req, res) => {
   // res.sendFile(__dirname + "/category.html");
   // res.render("category");
   // const cat = "Dairy and eggs";
-  return inventoryDB.find(function (err, items) {
+  return inventoryModel.find(function (err, items) {
     if (err) {
       console.log(err);
     } else {
@@ -70,9 +75,27 @@ app.get("/category", (req, res) => {
   });
 });
 
-app.post("/category", async (req, res) => {
+app.post("/category/modify",async (req, res) => {
+  const { old: olddata, new: newdata} = req.body;
+  
+  //update sold stock
+  const response = await inventoryModel.updateOne(
+    {
+      record: olddata,
+    },
+    {
+      $inc: {
+        record: -1,
+      },
+    }
+  );
+})
+
+app.post("/category", (req, res) => {
   //get data from category page and save it into database
   //deduct the quantity of inventory after sold
+  console.log(req.params);
+  res.redirect('/MainMenu')
 });
 
 app.listen(3000, () => {
