@@ -225,6 +225,9 @@ table.db-table tbody td {
   line-height: 30px;
 }
 
+table.db-table .Product {
+  
+}
 
 .btns-wrapper .db-btns {
   width: 80%;

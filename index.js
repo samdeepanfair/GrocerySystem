@@ -71,11 +71,11 @@ app.get("/Inventory", (req, res) => {
   });
 });
 
-app.get("/Staffs", (req, res) => {
+app.get("/Staffs", (req, res, next) => {
   res.sendFile(__dirname + "/Staffs.html");
 });
 
-app.get("/category", (req, res) => {
+app.get("/category", (req, res, next) => {
   // res.sendFile(__dirname + "/category.html");
   // res.render("category");
   // const cat = "Dairy and eggs";
@@ -88,6 +88,32 @@ app.get("/category", (req, res) => {
     }
   });
 });
+
+app.post("/insert-product", (req, res, next) => {
+  // var pName = req.body.pName;
+  // var pID = req.body.pID;
+  // var pCategory = req.body.pCategory;
+  // var pStock = req.body.pStock;
+  // var pPrice = req.body.pPrice;
+
+  let newProduct = new inventoryDB({
+    itemcategory: req.body.pCategory,
+    itemId: req.body.pID,
+    itemname: req.body.pName,
+    itemPrice: req.body.pPrice,
+    Stock: req.body.pStock,
+    itemSold: 0
+  });
+
+  newProduct.save();
+
+  res.redirect("/Inventory");
+});
+
+app.post("/update-product", (req, res, next) => {
+    
+});
+
 
 app.post("/category", async (req, res) => {
   //get data from category page and save it into database

@@ -1,8 +1,31 @@
+//get selected table row to edit-modal 
+var table = document.getElementById("db-table");
 
+for(let i = 0; i < table.rows.length; i++){
+   table.rows[i].onclick = function(){
+      document.getElementById("pName-edit").value = this.cells[0].innerHTML;
+      document.getElementById("pID-edit").value = this.cells[1].innerHTML;
+      document.getElementById("pStock-edit").value = this.cells[3].innerHTML;
+      document.getElementById("pPrice-edit").value = this.cells[4].innerHTML;
+      checkCategory(this.cells[2].innerHTML);
+   }
+}
+
+function checkCategory(text){
+console.log(text);
+   var select = document.getElementById("pCategory-edit");
+   Array.from(select.options).forEach(element => {
+      if(element.text == text){
+         console.log(element.value);
+         select.value = element.value;
+      }
+   });
+}
+
+
+//Show modal / close modal 
 var queryBtn = document.querySelectorAll("button.db-btns");
-
 var modals = document.querySelectorAll(".modal-container");
-
 var closeBtn = document.querySelectorAll(".modal-close-btn");
 
 for (var i = 0; i < queryBtn.length; i++) {
@@ -19,39 +42,4 @@ for (var i = 0; i < closeBtn.length; i++) {
          if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
        }
     }
-   }
-
-
-// function displayModal(id) {
-//     switch(id) {
-//         case "addBtn":
-//             var modal = document.getElementById("add-popup");
-//             break;
-//         case "editBtn":
-//             var modal = document.getElementById("edit-popup");
-//             break;
-//         case "deleteBtn":
-//             var modal = document.getElementById("delete-popup");
-//             break;
-//     }
-
-//     modal.style.display = "block";
-// // }
-
-// function closeModal() {
-//     modal.style.display = "none";
-// }
-
-// addBtn.onclick = function() {
-//     modal.style.display = "block";
-// }
-
-// closeBtn.onclick = function() {
-//     modal.style.display = "none";
-// }
-
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//       modal.style.display = "none";
-//     }
-// }
+}
