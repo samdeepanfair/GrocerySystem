@@ -225,8 +225,8 @@ table.db-table tbody td {
   line-height: 30px;
 }
 
-table.db-table .Product {
-  
+table.db-table .Product:hover{
+  background-color: #b0b0b0;
 }
 
 .btns-wrapper .db-btns {

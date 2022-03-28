@@ -3,11 +3,22 @@ var table = document.getElementById("db-table");
 
 for(let i = 0; i < table.rows.length; i++){
    table.rows[i].onclick = function(){
+      
       document.getElementById("pName-edit").value = this.cells[0].innerHTML;
       document.getElementById("pID-edit").value = this.cells[1].innerHTML;
       document.getElementById("pStock-edit").value = this.cells[3].innerHTML;
       document.getElementById("pPrice-edit").value = this.cells[4].innerHTML;
       checkCategory(this.cells[2].innerHTML);
+
+      for(let j = 0; j < table.rows.length; j++){
+         if (table.rows[j].style.backgroundColor == "rgb(176, 176, 176)"){
+            table.rows[j].style.backgroundColor == "rgb(230,230,230)";
+            console.log("same");
+         }
+      }
+
+      this.style.backgroundColor = "#b0b0b0";
+      
    }
 }
 

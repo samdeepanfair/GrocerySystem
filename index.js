@@ -56,7 +56,7 @@ app.use("/MainMenu", (req, res) => {
 app.get("/Inventory", (req, res) => {
   //res.sendFile(__dirname + "/Inventory.html");
 
-  return inventoryDB.find(function(err, items) {
+  return inventoryModel.find(function(err, items) {
     if(err) {
       console.log(err);
     } else {
@@ -94,15 +94,9 @@ app.get("/category", (req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
 app.post("/insert-product", (req, res, next) => {
-  // var pName = req.body.pName;
-  // var pID = req.body.pID;
-  // var pCategory = req.body.pCategory;
-  // var pStock = req.body.pStock;
-  // var pPrice = req.body.pPrice;
 
-  let newProduct = new inventoryDB({
+  let newProduct = new inventoryModel({
     itemcategory: req.body.pCategory,
     itemId: req.body.pID,
     itemname: req.body.pName,
@@ -114,33 +108,15 @@ app.post("/insert-product", (req, res, next) => {
   newProduct.save();
 
   res.redirect("/Inventory");
+
 });
 
 app.post("/update-product", (req, res, next) => {
-    
+  
 });
 
 
 app.post("/category", async (req, res) => {
-=======
-app.post("/category/modify",async (req, res) => {
-  const { old: olddata, new: newdata} = req.body;
-  
-  //update sold stock
-  const response = await inventoryModel.updateOne(
-    {
-      record: olddata,
-    },
-    {
-      $inc: {
-        record: -1,
-      },
-    }
-  );
-})
-
-app.post("/category", (req, res) => {
->>>>>>> 7edb842e448f517b884d0886ba8f57591f83ef88
   //get data from category page and save it into database
   //deduct the quantity of inventory after sold
   console.log(req.params);
