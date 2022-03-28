@@ -16,11 +16,15 @@ function generateOrderNum() {
   randomOrderNum = `#${random}`;
   orderNum.innerHTML = randomOrderNum;
 }
+
+//click on each category will show the pop up to see sub-category
 categoryItemArr.forEach((item) => {
   // console.log(item);
   item.addEventListener("click", popUp);
 });
 
+//function for pop-up
+//It will populate the data from inventoryDB database for sub-category
 function popUp(event) {
   event.preventDefault();
   document.querySelector(".modal").style.visibility = "visible";
@@ -181,7 +185,7 @@ function addToCart() {
   sele += 1;
   itemPriceDouble += itemPriceParse;
   tax += itemPriceParse * 0.05;
-  total += itemPriceParse + tax; //the calculation of total seems not correct...
+  total = itemPriceDouble + tax;
 
   document.querySelector("#selected-num").innerHTML = sele;
   document.querySelector("#subtotal").innerHTML = itemPriceDouble.toFixed(2);
@@ -202,13 +206,15 @@ document.addEventListener("click", function (e) {
     console.log(`prev sub: ${itemPriceDouble.toFixed(2)}`);
     itemPriceDouble = itemPriceDouble - price;
     // document.querySelector('#subtotal').innerHTML = `${itemPriceDouble.toFixed(2) - price.toFixed(2)}`;
-    document.querySelector("#subtotal").innerHTML = `${itemPriceDouble.toFixed(
-      2
-    )}`;
+    document.querySelector("#subtotal").innerHTML = `${itemPriceDouble.toFixed(2)}`;
+    tax = itemPriceDouble * 0.05;
+    document.querySelector("#tax").innerHTML = `${tax.toFixed(2)}`;
+    total = itemPriceDouble + tax;
+    document.querySelector("#total").innerHTML = `${total.toFixed(2)}`;
     e.target.parentElement.remove();
 
     // printing variables
-    console.log(`itemPriceDouble: ${itemPriceDouble}`);
+    // console.log(`itemPriceDouble: ${itemPriceDouble}`);
   }
 });
 
@@ -243,3 +249,37 @@ document
 // })
 //   console.log("quantity add/deduct function not yet been done");
 // });
+
+document.querySelector('#pay').addEventListener('click',(e)=>{
+  e.preventDefault();
+  document.querySelector('.modal-pay').style.visibility = "visible";
+
+  const cartItems = document.querySelectorAll('.cart-items');
+  const cartItemsArr = Array.from(cartItems);
+  cartItemsArr.forEach(item => {
+    if(item) item.remove();
+  })
+
+  const iName = document.querySelectorAll('.iName');
+  const iNameArr = Array.from(iName);
+
+  let countItem = 0;
+  iNameArr.forEach(iName => {
+    // console.log(iName.innerHTML);
+    countItem++;
+    // document.querySelector('.items-in-cart').insertAdjacentHTML(`afterend`,
+    // `<input type="text" class="cart-items" name="purchaseditem${countItem}" id="purchaseditem${countItem}" value="${iName.innerHTML}" disabled>`)
+    
+  })
+  // console.log("name: " + iNameArr[0].innerHTML);
+  console.log(document.querySelector('#purchaseditem1'));
+  document.querySelector('#purchaseditem1').value = iNameArr[0].innerHTML;
+
+  let grandTotal = document.querySelector("#total").innerHTML;
+  // console.log(`Now total: ${total}`);
+  document.querySelector('#grandtotal').value = grandTotal;
+})
+
+document.querySelector("#pay-button-cancel").addEventListener('click',()=>{
+  document.querySelector('.modal-pay').style.visibility = "hidden";
+})

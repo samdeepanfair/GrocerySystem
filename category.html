@@ -121,22 +121,20 @@
                     <li>Subtotal: <span id="subtotal"></span></li>
                     <li>Discount: <span id="discoun"></span></li>
                     <li>Tax: <span id="tax"></span></li>
-                    <li>Total: <span id="total"></span></li>
+                    <li>Grand Total: <span id="total"></span></li>
                 </ul>
             </div>
             <div class="functionBtns">
-                <a href="">
-                    <div class="functionBtns-item"> Discount</div>
-                </a>
-                <a href="">
-                    <div class="functionBtns-item"> Payment</div>
-                </a>
-                <a href="">
-                    <div class="functionBtns-item"> Customer Info</div>
-                </a>
-                <a href="MainMenu.html">
-                    <div class="functionBtns-item"> Back to Menu</div>
-                </a>
+                <form action="" method="get">
+                    <input type="button" class="functionBtns-item" value="Discount">
+                </form>
+                    <input type="button" class="functionBtns-item" value="Pay">
+                <form action="" method="get">
+                    <input type="button" class="functionBtns-item" value="Customer Info">
+                </form>
+                <form action="/MainMenu" method="get">
+                    <input type="submit" class="functionBtns-item" value="Back to Menu">
+                </form>
             </div>
         </div>
     </div>
@@ -223,8 +221,25 @@
         <!-- <button class="ok">OK</button> -->
         <!-- </div> -->
     </div>
+<<<<<<< HEAD
+
+    <div class="modal-pay">
+        <div class="pay-header">
+            <h3>PAY</h3>
+        </div>
+        <form action="/category" method="post">
+            <label for="grandtotal">Grand Total</label>
+            <input type="text" name="grandtotal" id="grandtotal" value="">
+            <input type="button" value="Cancel">
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
+    <script src="/js/category.js"></script>
+    <!-- <script src="index.js"></script> -->
+=======
     <script src="index.js"></script>
     <script src="category.js"></script>
+>>>>>>> 9e5489362cc8f5483268ef762d4a4da4fb18b28f
 </body>
 
 </html>
