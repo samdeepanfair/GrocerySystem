@@ -238,7 +238,7 @@ input#search,
 }
 
 .modal-pay{
-  /* visibility: hidden; */
+  visibility: hidden;
   /* opacity: 1; */
   position: absolute;
   top: 55%;

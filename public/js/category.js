@@ -255,10 +255,10 @@ document.querySelector('#pay').addEventListener('click',(e)=>{
   document.querySelector('.modal-pay').style.visibility = "visible";
 
   const cartItems = document.querySelectorAll('.cart-items');
-  const cartItemsArr = Array.from(cartItems);
-  cartItemsArr.forEach(item => {
-    if(item) item.remove();
-  })
+  // const cartItemsArr = Array.from(cartItems);
+  // cartItemsArr.forEach(item => {
+  //   if(item) item.remove();
+  // })
 
   const iName = document.querySelectorAll('.iName');
   const iNameArr = Array.from(iName);
