@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table class="db-table bg-gray">
+                    <table class="db-table bg-gray" id="db-table">
                         <thead>
                             <tr>    
                                 <th class="bg-green"><%= fields.col1 %></th>
@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                             <% items.forEach((item)=>{ %>
-                            <tr>
+                            <tr class="<%= itemName %>">
                                 <td><%= item.itemname %></td>
                                 <td><%= item.itemId %></td>
                                 <td><%= item.itemcategory %></td>
@@ -64,21 +64,38 @@
             <div class="add-modal bg-gray">
                 <h4 class="modal-title">Add Product</h4>
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                <form method="POST" class="add-form">
+                <form action="/insert-product" method="POST" class="add-form">
                     <label class="add-form-label">Product Name : </label>
-                    <input type="text">
+                    <input type="text" name="pName" id="pName">
     
                     <label class="add-form-label">Product ID : </label>
-                    <input type="text">
+                    <input type="text" name="pID" id="pID">
     
                     <label class="add-form-label">Category : </label>
-                    <input type="text">
+                    <select name="pCategory" id="pCategory">
+                        <option>Fruits & Vegetables</option>
+                        <option>Dairy & Eggs</option>
+                        <option>Bakery</option>
+                        <option>Meat & Seafood</option>
+                        <option>Snacks & Cookies</option>
+                        <option>Beverages</option>
+                        <option>Frozen Food</option>
+                        <option>Prepared Food</option>
+                        <option>Pantry</option>
+                        <option>Pet care</option>
+                        <option>Floral & Garden</option>
+                        <option>International</option>
+                        <option>Baby Care</option>
+                        <option>Home</option>
+                        <option>Health & Beauty</option>
+                        <option>Cleaning</option>
+                    </select>
     
                     <label class="add-form-label">Quantity : </label>
-                    <input type="number">
+                    <input type="number" name="pStock" id="pStock" min="0">
     
                     <label class="add-form-label">Price :</label>
-                    <input type="number" min="0.00" max="10000.00" step="0.01">
+                    <input type="number" name="pPrice" id="pPrice" min="0.00" max="10000.00" step="0.01">
     
                     <input class="add-form-submit non-outline" type="submit" value="Add">
                 </form>
@@ -86,26 +103,43 @@
         </div>
     
         <!--Edit button modal-->
-        <!-- TODO: CHANGE CLASS NAME & HOW TO SPECIFY AN USER TO BE UPDATED-->
+        <!-- TODO: CHANGE CLASS NAME-->
         <div class="modal-container" id="edit-popup-product">
             <div class="add-modal bg-gray">
                 <h4 class="modal-title">Edit Product</h4>
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                <form method="POST" class="add-form">
+                <form action="/update-product" method="POST" class="add-form">
                     <label class="add-form-label">Product Name : </label>
-                    <input type="text">
+                    <input type="text" name="pName_edit" id="pName_edit">
     
                     <label class="add-form-label">Product ID : </label>
-                    <input type="text">
+                    <input type="text" name="pID_edit" id="pID_edit" readonly>
     
                     <label class="add-form-label">Category : </label>
-                    <input type="text">
+                    <select name="pCategory_edit" id="pCategory_edit">
+                        <option value="produce">Fruits and Vegetables</option>
+                        <option value="dairy">Dairy and eggs</option>
+                        <option value="bakery">Bakery</option>
+                        <option value="protein">Meat and Seafood</option>
+                        <option value="snack">Snacks and Cookies</option>
+                        <option value="drink">Beverages</option>
+                        <option value="frozen">Frozen Food</option>
+                        <option value="prep">Prepared Food</option>
+                        <option value="pantry">Pantry</option>
+                        <option value="pet">Pet care</option>
+                        <option value="plant">Floral and Garden</option>
+                        <option value="international">International</option>
+                        <option value="baby">Baby Care</option>
+                        <option value="home">Home</option>
+                        <option value="health">Health and Beauty</option>
+                        <option value="cleaning">Cleaning</option>
+                    </select>
     
                     <label class="add-form-label">Quantity : </label>
-                    <input type="number">
+                    <input type="number" name="pStock_edit" id="pStock_edit" min="0">
     
                     <label class="add-form-label">Price :</label>
-                    <input type="number" min="0.00" max="10000.00" step="0.01">
+                    <input type="number" name="pPrice_edit" id="pPrice_edit" min="0.00" max="10000.00" step="0.01">
 
                     <input class="add-form-submit non-outline" type="submit" value="Edit">
                 </form>

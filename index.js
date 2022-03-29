@@ -56,7 +56,7 @@ app.use("/MainMenu", (req, res) => {
 app.get("/Inventory", (req, res) => {
   //res.sendFile(__dirname + "/Inventory.html");
 
-  return inventoryDB.find(function(err, items) {
+  return inventoryModel.find(function(err, items) {
     if(err) {
       console.log(err);
     } else {
@@ -76,11 +76,11 @@ app.get("/Inventory", (req, res) => {
   });
 });
 
-app.get("/Staffs", (req, res) => {
+app.get("/Staffs", (req, res, next) => {
   res.sendFile(__dirname + "/Staffs.html");
 });
 
-app.get("/category", (req, res) => {
+app.get("/category", (req, res, next) => {
   // res.sendFile(__dirname + "/category.html");
   // res.render("category");
   // const cat = "Dairy and eggs";
@@ -94,23 +94,41 @@ app.get("/category", (req, res) => {
   });
 });
 
-app.post("/category/modify",async (req, res) => {
-  const { old: olddata, new: newdata} = req.body;
-  
-  //update sold stock
-  const response = await inventoryModel.updateOne(
-    {
-      record: olddata,
-    },
-    {
-      $inc: {
-        record: -1,
-      },
-    }
-  );
-})
+app.post("/insert-product", (req, res, next) => {
 
-app.post("/category", (req, res) => {
+  let newProduct = new inventoryModel({
+    itemcategory: req.body.pCategory,
+    itemId: req.body.pID,
+    itemname: req.body.pName,
+    itemPrice: req.body.pPrice,
+    Stock: req.body.pStock,
+    itemSold: 0
+  });
+
+  newProduct.save();
+
+  res.redirect("/Inventory");
+
+});
+
+app.post("/update-product", (req, res, next) => {
+  var filterQuery = {'itemId': req.body.pID_edit};
+  var updateQuery = {
+    itemcategory: req.body.pCategory_edit,
+    itemname: req.body.pName_edit,
+    itemPrice: req.body.pPrice_edit,
+    Stock: req.body.pStock_edit
+  }
+  
+  inventoryModel.findOneAndUpdate(filterQuery, updateQuery, {upsert: true}, function(err, doc) {
+      if (err) return res.send(500, {error: err});
+      return res.redirect("/Inventory");
+  });
+
+});
+
+
+app.post("/category", async (req, res) => {
   //get data from category page and save it into database
   //deduct the quantity of inventory after sold
   console.log(req.params);
