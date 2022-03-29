@@ -4,10 +4,10 @@ var table = document.getElementById("db-table");
 for(let i = 0; i < table.rows.length; i++){
    table.rows[i].onclick = function(){
       
-      document.getElementById("pName-edit").value = this.cells[0].innerHTML;
-      document.getElementById("pID-edit").value = this.cells[1].innerHTML;
-      document.getElementById("pStock-edit").value = this.cells[3].innerHTML;
-      document.getElementById("pPrice-edit").value = this.cells[4].innerHTML;
+      document.getElementById("pName_edit").value = this.cells[0].innerHTML;
+      document.getElementById("pID_edit").value = this.cells[1].innerHTML;
+      document.getElementById("pStock_edit").value = this.cells[3].innerHTML;
+      document.getElementById("pPrice_edit").value = this.cells[4].innerHTML;
       checkCategory(this.cells[2].innerHTML);
 
       for(let j = 0; j < table.rows.length; j++){
@@ -24,7 +24,7 @@ for(let i = 0; i < table.rows.length; i++){
 
 function checkCategory(text){
 console.log(text);
-   var select = document.getElementById("pCategory-edit");
+   var select = document.getElementById("pCategory_edit");
    Array.from(select.options).forEach(element => {
       if(element.text == text){
          console.log(element.value);

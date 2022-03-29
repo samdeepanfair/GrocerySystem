@@ -110,13 +110,13 @@
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
                 <form action="/update-product" method="POST" class="add-form">
                     <label class="add-form-label">Product Name : </label>
-                    <input type="text" name="pName" id="pName-edit">
+                    <input type="text" name="pName_edit" id="pName_edit">
     
                     <label class="add-form-label">Product ID : </label>
-                    <input type="text" name="pID" id="pID-edit">
+                    <input type="text" name="pID_edit" id="pID_edit" readonly>
     
                     <label class="add-form-label">Category : </label>
-                    <select name="pCategory" id="pCategory-edit">
+                    <select name="pCategory_edit" id="pCategory_edit">
                         <option value="produce">Fruits and Vegetables</option>
                         <option value="dairy">Dairy and eggs</option>
                         <option value="bakery">Bakery</option>
@@ -136,10 +136,10 @@
                     </select>
     
                     <label class="add-form-label">Quantity : </label>
-                    <input type="number" name="pStock" id="pStock-edit" min="0">
+                    <input type="number" name="pStock_edit" id="pStock_edit" min="0">
     
                     <label class="add-form-label">Price :</label>
-                    <input type="number" name="pPrice" id="pPrice-edit" min="0.00" max="10000.00" step="0.01">
+                    <input type="number" name="pPrice_edit" id="pPrice_edit" min="0.00" max="10000.00" step="0.01">
 
                     <input class="add-form-submit non-outline" type="submit" value="Edit">
                 </form>

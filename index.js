@@ -112,7 +112,19 @@ app.post("/insert-product", (req, res, next) => {
 });
 
 app.post("/update-product", (req, res, next) => {
+  var filterQuery = {'itemId': req.body.pID_edit};
+  var updateQuery = {
+    itemcategory: req.body.pCategory_edit,
+    itemname: req.body.pName_edit,
+    itemPrice: req.body.pPrice_edit,
+    Stock: req.body.pStock_edit
+  }
   
+  inventoryModel.findOneAndUpdate(filterQuery, updateQuery, {upsert: true}, function(err, doc) {
+      if (err) return res.send(500, {error: err});
+      return res.redirect("/Inventory");
+  });
+
 });
 
 
