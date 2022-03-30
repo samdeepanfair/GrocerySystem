@@ -7,6 +7,7 @@ const categoryItemNames = Array.from(
 const modalHeader = document.querySelector(".modal");
 const subCatItemArr = Array.from(document.querySelectorAll(".sub-cat-item"));
 const orderNum = document.querySelector(".orderNum");
+const cartItems = [];
 let count = 0;
 let randomOrderNum = 0;
 
@@ -192,6 +193,8 @@ function addToCart() {
   document.querySelector("#tax").innerHTML = tax.toFixed(2);
   document.querySelector("#total").innerHTML = total.toFixed(2);
   document.querySelector(".modal").style.visibility = "hidden";
+
+  cartItems.push(itemName);
 }
 
 document.addEventListener("click", function (e) {
@@ -200,6 +203,9 @@ document.addEventListener("click", function (e) {
     price = parseFloat(
       e.target.parentElement.children[1].innerHTML.slice(1, 5)
     );
+    const itemName = Array.from(e.target.parentElement.children)
+      .find(el => el.classList.contains("iName")).innerText;
+    cartItems = cartItems.filter(item => item !== itemName);
     console.log(price);
     sele = sele - 1;
     document.querySelector("#selected-num").innerHTML = sele;
