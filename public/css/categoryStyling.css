@@ -237,22 +237,6 @@ input#search,
   margin: 1em;
 }
 
-.modal-pay{
-  visibility: hidden;
-  /* opacity: 1; */
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color:rgb(200, 214, 240) ;
-  width: 500px;
-  min-height: 450px;
-  box-shadow: 2px 2px 5px rgb(95, 94, 94);
-  border-radius: 10px;
-  overflow: hidden;
-  transition: 0.4s ease-in;
-}
-
 .pay-header>h3{
   /* background-color: aqua; */
   text-align: center;
