@@ -4,7 +4,7 @@ mongoose.connect("mongodb://localhost:27017/empDB", {
   useNewUrlParser: true,
 });
 
-const emp = mongoose.Schema({
+const empSchema = mongoose.Schema({
   empID: { type: Number, required: true, unique: true }, 
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -14,7 +14,7 @@ const emp = mongoose.Schema({
   SSN: { type: Number, required: true, unique: true },
 });
 
-const empItem = mongoose.model("empItem", emp);
+const empItem = mongoose.model("empItem", empSchema);
 
 const admin = new empItem({
     empID: 300330001,

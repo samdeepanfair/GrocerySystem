@@ -4,7 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 // const inventoryModel = require("./inventoryModel");
 // const { name } = require("ejs");
-const employeeModel = require('./employeeModel');
+
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,9 +14,31 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
 
-mongoose.connect("mongodb://localhost:27017/categoryDB", {
+const conn = mongoose.createConnection("mongodb://localhost:27017/categoryDB", {
   useNewUrlParser: true,
 });
+const conn2 = mongoose.createConnection("mongodb://localhost:27017/employeeDB", {
+  useNewUrlParser: true,
+});
+const itemSchema = mongoose.Schema({
+  itemcategory: { type: String, required: true },
+  itemId: { type: Number, required: true, unique: true },
+  itemname: { type: String, required: true, unique: true },
+  itemPrice: { type: Number, required: true },
+  Stock: { type: Number, required: true },
+  itemSold: { type: Number, required: true },
+});
+const empSchema = mongoose.Schema({
+  empID: { type: Number, required: true, unique: true }, 
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  DOB: { type: Date, required: true },
+  // address: { type: String, required: true },
+  position: {type: String, required: true},
+  SSN: { type: Number, required: true, unique: true },
+});
+const inventoryModel = conn.model("Item",itemSchema);
+const employeeModel = conn2.model("empItem",empSchema);
 
 // drop the database if it already exists
 // const connection = mongoose.connection;
@@ -42,7 +64,8 @@ mongoose.connect("mongodb://localhost:27017/categoryDB", {
 // });
 
 // const inventoryDB = require("./inventoryDB");
-const inventoryModel = require("./inventoryModel");
+// const inventoryModel = require("./inventoryModel");
+// const employeeModel = require('./employeeModel');
 
 
 app.get("/", (req,res)=> {
@@ -56,7 +79,7 @@ app.get("/Login", (req, res) => {
 app.post("/Login", (req, res) => {
   console.log("We are in Login page");
   let myid = req.body.myId;
-
+console.log(myid);
   // res.send(403, "No rights to access")
 
   res.redirect("/MainMenu");
