@@ -9,11 +9,12 @@ const emp = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   DOB: { type: Date, required: true },
-  address: { type: String, required: true },
-  SSN: { type: Number, required: true },
+  // address: { type: String, required: true },
+  position: {type: String, required: true},
+  SSN: { type: Number, required: true, unique: true },
 });
 
-const empItem = mongoose.model("Employee Item", emp);
+const empItem = mongoose.model("empItem", emp);
  
   module.exports = empItem;
   
