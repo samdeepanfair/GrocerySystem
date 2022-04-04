@@ -2,9 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
-// const cheerio = require("cheerio");
-// $ = cheerio.load("category.html");
-const inventoryModel = require("./inventoryModel");
+// const inventoryModel = require("./inventoryModel");
+// const { name } = require("ejs");
+const employeeModel = require('./employeeModel');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,16 +18,32 @@ mongoose.connect("mongodb://localhost:27017/categoryDB", {
   useNewUrlParser: true,
 });
 
-// const itemSchema = mongoose.Schema({
-//   itemcategory: { type: String, required: true },
-//   itemId: { type: Number, required: true, unique: true },
-//   itemname: { type: String, required: true },
-//   itemPrice: { type: Number, required: true },
-//   Stock: { type: Number, required: true },
-//   itemSold: { type: Number, required: true },
+// drop the database if it already exists
+// const connection = mongoose.connection;
+// connection.once("open", function(){
+//   console.log("MongoDB connected successfully.");
+//   connection.db.listCollections().toArray(function(err, names){
+//     if(err) console.log(err);
+//     else{
+//       // for(i = 0; i < names.length; i++){
+//         console.log("Line 28 index.js: " + names[0].name);
+//         if((names[0].name = "items")){
+//           console.log("items collection Exists in DB");
+//           connection.db.dropCollection("items",function(err,res){
+//             console.log("collection dropped");
+//           });
+//           // console.log("items collection no longer available.");
+//         }else{
+//           console.log("collection doesn't exist.")
+//         }
+//       // }
+//     }
+//   })
 // });
 
-// const Item = mongoose.model("Item", itemSchema);
+// const inventoryDB = require("./inventoryDB");
+const inventoryModel = require("./inventoryModel");
+
 
 app.get("/", (req,res)=> {
   res.redirect("/Login");
@@ -40,15 +56,13 @@ app.get("/Login", (req, res) => {
 app.post("/Login", (req, res) => {
   console.log("We are in Login page");
   let myid = req.body.myId;
-  let mypassword = req.body.mypassword;
-  // console.log(myid);
-  // console.log(mypassword);
-  
-  //validate user data here, if correct, go to the mainmenu
+
+  // res.send(403, "No rights to access")
+
   res.redirect("/MainMenu");
 });
 
-app.use("/MainMenu", (req, res) => {
+app.get("/MainMenu", (req, res) => {
   console.log("I am in app.use()");
   res.sendFile(__dirname + "/MainMenu.html");
 });
@@ -131,8 +145,27 @@ app.post("/update-product", (req, res, next) => {
 app.post("/category", async (req, res) => {
   //get data from category page and save it into database
   //deduct the quantity of inventory after sold
-  console.log(req.params);
-  res.redirect('/MainMenu')
+  const {cartItems} = req.body;
+  // await cartItems.array.forEach(element => {
+  //   return inventoryModel.updateMany({itemname: element},{$inc: {Stock: -1}},{ multi: true}, function(err,res){
+  //   if(err){
+  //     console.error(err.toString());
+  //   } else {
+  //     console.log("data successfully updated!")
+  //     res.redirect('/MainMenu');
+  //   }
+  // })
+  // });
+  const cartItemsLength = Object.keys(cartItems).length;
+  for( let i = 0; i < cartItemsLength; i++){
+    let response = await inventoryModel.updateOne(
+    {itemname: cartItems[i]},
+    {$inc: {Stock: -1,itemSold: 1}});
+  console.log(response);
+  }
+  
+  // res.sendFile(__dirname + '/MainMenu.html');
+  // window.location.assign('/MainMenu')
 });
 
 app.listen(3000, () => {
