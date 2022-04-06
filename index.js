@@ -130,7 +130,26 @@ app.get("/Inventory", (req, res) => {
 });
 
 app.get("/Staffs", (req, res, next) => {
-  res.sendFile(__dirname + "/Staffs.html");
+  // res.sendFile(__dirname + "/Staffs.html");
+  return employeeModel.find(function(err, staffs) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log("Staff.ejs")
+      res.render("management", {
+        titleName: "Staff",
+        itemName: "Employee",
+        fields: {
+          col1: "First Name",
+          col2: "Last ID",
+          col3: "Employee ID",
+          col4: "Position",
+          col5: "Date of Birth"
+        },
+        staffs: staffs
+      }); 
+    }
+  });
 });
 
 app.get("/category", (req, res, next) => {
@@ -194,7 +213,23 @@ app.post("/delete-product", (req, res, next) => {
         // res.redirect('Inventory');
       }
   })
-})
+});
+
+app.post("/insert-staff", (req, res, next) => {
+
+  let newEmployee = new employeeModel({
+    empID: req.body.eID,
+    firstName: req.body.fName,
+    lastName: req.body.lName,
+    DOB: req.body.eDOB,
+    position: req.body.ePosition,
+    SSN: 0 //?? : should i add this field on form? or not? or delete the field on db? 
+  });
+
+  newEmployee.save();
+
+  res.redirect("back");
+});
 
 
 

@@ -35,15 +35,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% items.forEach((item)=>{ %>
-                            <tr class="<%= itemName %>">
-                                <td><%= item.itemname %></td>
-                                <td><%= item.itemId %></td>
-                                <td><%= item.itemcategory %></td>
-                                <td><%= item.Stock %></td>
-                                <td><%= item.itemPrice %></td>
-                            </tr>
-                            <% }) %> 
+                            <% if(titleName == "Inventory") { %>
+                                <% items.forEach((item)=>{ %>
+                                    <tr class="<%= itemName %>">
+                                        <td><%= item.itemname %></td>
+                                        <td><%= item.itemId %></td>
+                                        <td><%= item.itemcategory %></td>
+                                        <td><%= item.Stock %></td>
+                                        <td><%= item.itemPrice %></td>
+                                    </tr>
+                                    <% }) %> 
+                            <% } else if (titleName == "Staff") { %>
+                                <% staffs.forEach((staff)=>{ %>
+                                    <tr class="<%= itemName %>">
+                                        <td><%= staff.firstName %></td>
+                                        <td><%= staff.lastName %></td>
+                                        <td><%= staff.empID %></td>
+                                        <td><%= staff.position %></td>
+                                        <td><%= staff.DOB %></td>
+                                    </tr>
+                                    <% }) %> 
+                            <% } %> 
                         </tbody>
                     </table>
                 </div>
@@ -61,61 +73,89 @@
 
         <!--Add button modal -->
         <div class="modal-container" id="add-popup-product">
-            <div class="add-modal bg-gray">
-                <h4 class="modal-title">Add Product</h4>
+            <div class="add-edit-modal bg-gray">
+                <h4 class="modal-title">Add <%= titleName %> </h4>
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                <form action="/insert-product" method="POST" class="add-form">
-                    <label class="add-form-label">Product Name : </label>
-                    <input type="text" name="pName" id="pName">
-    
-                    <label class="add-form-label">Product ID : </label>
-                    <input type="text" name="pID" id="pID">
-    
-                    <label class="add-form-label">Category : </label>
-                    <select name="pCategory" id="pCategory">
-                        <option>Fruits & Vegetables</option>
-                        <option>Dairy & Eggs</option>
-                        <option>Bakery</option>
-                        <option>Meat & Seafood</option>
-                        <option>Snacks & Cookies</option>
-                        <option>Beverages</option>
-                        <option>Frozen Food</option>
-                        <option>Prepared Food</option>
-                        <option>Pantry</option>
-                        <option>Pet care</option>
-                        <option>Floral & Garden</option>
-                        <option>International</option>
-                        <option>Baby Care</option>
-                        <option>Home</option>
-                        <option>Health & Beauty</option>
-                        <option>Cleaning</option>
-                    </select>
-    
-                    <label class="add-form-label">Quantity : </label>
-                    <input type="number" name="pStock" id="pStock" min="0">
-    
-                    <label class="add-form-label">Price :</label>
-                    <input type="number" name="pPrice" id="pPrice" min="0.00" max="10000.00" step="0.01">
-    
-                    <input class="add-form-submit non-outline" type="submit" value="Add">
-                </form>
+                <% if(titleName == "Inventory") { %>
+                    <form action="/insert-product" method="POST" class="add-edit-form">
+                <% } else if (titleName == "Staff") { %>
+                    <form action="/insert-staff" method="POST" class="add-edit-form">
+                <% } %> 
+                        <label class="add-edit-form-label"><%= fields.col1 %> : </label>
+                        <% if(titleName == "Inventory") { %>
+                            <input type="text" name="pName" id="pName">
+                        <% } else if (titleName == "Staff") { %>
+                            <input type="text" name="fName" id="fName">
+                        <% } %>    
+
+                        <label class="add-edit-form-label"><%= fields.col2 %> : </label>
+                        <% if(titleName == "Inventory") { %>
+                            <input type="text" name="pID" id="pID">
+                        <% } else if (titleName == "Staff") { %>
+                            <input type="text" name="lName" id="lName">
+                        <% } %>    
+
+                        <label class="add-edit-form-label"><%= fields.col3 %> : </label>
+                        <% if(titleName == "Inventory") { %>
+                            <select name="pCategory" id="pCategory">
+                                <option>Fruits & Vegetables</option>
+                                <option>Dairy & Eggs</option>
+                                <option>Bakery</option>
+                                <option>Meat & Seafood</option>
+                                <option>Snacks & Cookies</option>
+                                <option>Beverages</option>
+                                <option>Frozen Food</option>
+                                <option>Prepared Food</option>
+                                <option>Pantry</option>
+                                <option>Pet care</option>
+                                <option>Floral & Garden</option>
+                                <option>International</option>
+                                <option>Baby Care</option>
+                                <option>Home</option>
+                                <option>Health & Beauty</option>
+                                <option>Cleaning</option>
+                            </select>
+                        <% } else if (titleName == "Staff") { %>
+                            <input type="text" name="eID" id="eID">
+                        <% } %>
+
+                        
+                        <label class="add-edit-form-label"><%= fields.col4 %> : </label>
+                        <% if(titleName == "Inventory") { %>
+                            <input type="number" name="pStock" id="pStock" min="0">
+                        <% } else if (titleName == "Staff") { %>
+                            <select name=ePosition id=ePosition>
+                                <option>Admin</option>
+                                <option>Employee</option>
+                            </select>
+                        <% } %>
+
+                        <label class="add-edit-form-label"><%= fields.col5 %> :</label>
+                        <% if(titleName == "Inventory") { %>
+                            <input type="number" name="pPrice" id="pPrice" min="0.00" max="10000.00" step="0.01">
+                        <% } else if (titleName == "Staff") { %>
+                            <input type="date" name="eDOB" id="eDOB">
+                        <% } %>
+        
+                        <input class="add-edit-form-submit non-outline" type="submit" value="Add">
+                    </form>
             </div>
         </div>
     
         <!--Edit button modal-->
-        <!-- TODO: CHANGE CLASS NAME-->
+
         <div class="modal-container" id="edit-popup-product">
-            <div class="add-modal bg-gray">
+            <div class="add-edit-modal bg-gray">
                 <h4 class="modal-title">Edit Product</h4>
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                <form action="/update-product" method="POST" class="add-form">
-                    <label class="add-form-label">Product Name : </label>
+                <form action="/update-product" method="POST" class="add-edit-form">
+                    <label class="add-edit-form-label">Product Name : </label>
                     <input type="text" name="pName_edit" id="pName_edit">
     
-                    <label class="add-form-label">Product ID : </label>
+                    <label class="add-edit-form-label">Product ID : </label>
                     <input type="text" name="pID_edit" id="pID_edit" readonly>
     
-                    <label class="add-form-label">Category : </label>
+                    <label class="add-edit-form-label">Category : </label>
                     <select name="pCategory_edit" id="pCategory_edit">
                         <option>Fruits and Vegetables</option>
                         <option>Dairy & Eggs</option>
@@ -135,13 +175,13 @@
                         <option>Cleaning</option>
                     </select>
     
-                    <label class="add-form-label">Quantity : </label>
+                    <label class="add-edit-form-label">Quantity : </label>
                     <input type="number" name="pStock_edit" id="pStock_edit" min="0">
     
-                    <label class="add-form-label">Price :</label>
+                    <label class="add-edit-form-label">Price :</label>
                     <input type="number" name="pPrice_edit" id="pPrice_edit" min="0.00" max="10000.00" step="0.01">
 
-                    <input class="add-form-submit non-outline" type="submit" value="Edit">
+                    <input class="add-edit-form-submit non-outline" type="submit" value="Edit">
                 </form>
             </div>
         </div>
