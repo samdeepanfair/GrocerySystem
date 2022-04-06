@@ -117,22 +117,22 @@
     
                     <label class="add-form-label">Category : </label>
                     <select name="pCategory_edit" id="pCategory_edit">
-                        <option value="produce">Fruits and Vegetables</option>
-                        <option value="dairy">Dairy and eggs</option>
-                        <option value="bakery">Bakery</option>
-                        <option value="protein">Meat and Seafood</option>
-                        <option value="snack">Snacks and Cookies</option>
-                        <option value="drink">Beverages</option>
-                        <option value="frozen">Frozen Food</option>
-                        <option value="prep">Prepared Food</option>
-                        <option value="pantry">Pantry</option>
-                        <option value="pet">Pet care</option>
-                        <option value="plant">Floral and Garden</option>
-                        <option value="international">International</option>
-                        <option value="baby">Baby Care</option>
-                        <option value="home">Home</option>
-                        <option value="health">Health and Beauty</option>
-                        <option value="cleaning">Cleaning</option>
+                        <option>Fruits and Vegetables</option>
+                        <option>Dairy & Eggs</option>
+                        <option>Bakery</option>
+                        <option>Meat and Seafood</option>
+                        <option>Snacks and Cookies</option>
+                        <option>Beverages</option>
+                        <option>Frozen Food</option>
+                        <option>Prepared Food</option>
+                        <option>Pantry</option>
+                        <option>Pet care</option>
+                        <option>Floral and Garden</option>
+                        <option>International</option>
+                        <option>Baby Care</option>
+                        <option>Home</option>
+                        <option>Health and Beauty</option>
+                        <option>Cleaning</option>
                     </select>
     
                     <label class="add-form-label">Quantity : </label>
@@ -151,11 +151,11 @@
             <div class="delete-modal bg-gray">
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
                 <p>Are you sure you want to delete this <span style="text-transform:lowercase"><%= itemName %></span> ? </p>
-                <button class="delete-btns non-outline">Yes</button>
+                <button id="delete-btns" class="delete-btns non-outline">Yes</button>
             </div>
         </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/management.js"></script>
 </body>
 

@@ -17,9 +17,13 @@ app.set("view engine", "ejs");
 const conn = mongoose.createConnection("mongodb://localhost:27017/categoryDB", {
   useNewUrlParser: true,
 });
+
+
 const conn2 = mongoose.createConnection("mongodb://localhost:27017/empDB", {
   useNewUrlParser: true,
 });
+
+
 const itemSchema = mongoose.Schema({
   itemcategory: { type: String, required: true },
   itemId: { type: Number, required: true, unique: true },
@@ -28,6 +32,8 @@ const itemSchema = mongoose.Schema({
   Stock: { type: Number, required: true },
   itemSold: { type: Number, required: true },
 });
+
+
 const empSchema = mongoose.Schema({
   empID: { type: String, required: true, unique: true }, 
   firstName: { type: String, required: true },
@@ -37,6 +43,8 @@ const empSchema = mongoose.Schema({
   position: {type: String, required: true},
   SSN: { type: Number, required: true, unique: true },
 });
+
+
 const inventoryModel = conn.model("Item",itemSchema);
 const employeeModel = conn2.model("empItem",empSchema);
 
@@ -152,11 +160,12 @@ app.post("/insert-product", (req, res, next) => {
 
   newProduct.save();
 
-  res.redirect("/Inventory");
-
+  res.redirect("back");
 });
 
 app.post("/update-product", (req, res, next) => {
+  console.log(req.body.pCategory_edit);
+  console.log(req.body.pCategory_edit.innerHTML);
   var filterQuery = {'itemId': req.body.pID_edit};
   var updateQuery = {
     itemcategory: req.body.pCategory_edit,
@@ -167,10 +176,26 @@ app.post("/update-product", (req, res, next) => {
   
   inventoryModel.findOneAndUpdate(filterQuery, updateQuery, {upsert: true}, function(err, doc) {
       if (err) return res.send(500, {error: err});
-      return res.redirect("/Inventory");
+      return res.redirect("back");
   });
 
 });
+
+
+app.post("/delete-product", (req, res, next) => {
+
+  var deleteQuery = {'itemId': req.body.pid};
+
+  inventoryModel.findOneAndDelete(deleteQuery, function(err){
+    if (err) {
+      console.log("There is an error while deleting: " + err);
+    } else {
+      console.log("Successfully Deleted");
+        // res.redirect('Inventory');
+      }
+  })
+})
+
 
 
 app.post("/category", async (req, res) => {
