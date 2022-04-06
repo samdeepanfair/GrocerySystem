@@ -5,7 +5,7 @@ mongoose.connect("mongodb://localhost:27017/empDB", {
 });
 
 const empSchema = mongoose.Schema({
-  empID: { type: Number, required: true, unique: true }, 
+  empID: { type: String, required: true, unique: true }, 
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   DOB: { type: Date, required: true },
@@ -17,7 +17,7 @@ const empSchema = mongoose.Schema({
 const empItem = mongoose.model("empItem", empSchema);
 
 const admin = new empItem({
-    empID: 300330001,
+    empID: "300330001",
     firstName: "Nelson",
     lastName: "Eng",
     DOB: 01/01/1999,
@@ -25,7 +25,7 @@ const admin = new empItem({
     SSN: 900000001,
   });
 const employee1 = new empItem({
-    empID: 300331111,
+    empID: "300335548",
     firstName: "Joling",
     lastName: "Weng",
     DOB: 01/01/1999,
@@ -33,7 +33,7 @@ const employee1 = new empItem({
     SSN: 900000002,
   });
 const employee2 = new empItem({
-    empID: 300331112,
+    empID: "300323120",
     firstName: "Sulgi",
     lastName: "Kim",
     DOB: 01/01/1999,
@@ -41,7 +41,7 @@ const employee2 = new empItem({
     SSN: 900000003,
   });
 const employee3 = new empItem({
-    empID: 300331112,
+    empID: "300342244",
     firstName: "Tashmeet",
     lastName: "Singh",
     DOB: 01/01/1999,
@@ -49,7 +49,7 @@ const employee3 = new empItem({
     SSN: 900000004,
   });
 const employee4 = new empItem({
-    empID: 300331112,
+    empID: "300329987",
     firstName: "Samdeep",
     lastName: "Singh",
     DOB: 01/01/1999,
@@ -73,7 +73,7 @@ const employee4 = new empItem({
       if (err) {
         console.log(err);
       } else {
-        console.log("items db created successfully");
+        console.log("employee db created successfully");
         mongoose.connection.close();
       }
     }
