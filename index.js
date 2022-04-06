@@ -1,10 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const port = process.env.port || 3000;
 const mongoose = require("mongoose");
 // const inventoryModel = require("./inventoryModel");
 // const { name } = require("ejs");
-
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ app.set("view engine", "ejs");
 const conn = mongoose.createConnection("mongodb://localhost:27017/categoryDB", {
   useNewUrlParser: true,
 });
-const conn2 = mongoose.createConnection("mongodb://localhost:27017/employeeDB", {
+const conn2 = mongoose.createConnection("mongodb://localhost:27017/empDB", {
   useNewUrlParser: true,
 });
 const itemSchema = mongoose.Schema({
@@ -29,7 +29,7 @@ const itemSchema = mongoose.Schema({
   itemSold: { type: Number, required: true },
 });
 const empSchema = mongoose.Schema({
-  empID: { type: Number, required: true, unique: true }, 
+  empID: { type: String, required: true, unique: true }, 
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   DOB: { type: Date, required: true },
@@ -79,10 +79,18 @@ app.get("/Login", (req, res) => {
 app.post("/Login", (req, res) => {
   console.log("We are in Login page");
   let myid = req.body.myId;
-console.log(myid);
-  // res.send(403, "No rights to access")
-
-  res.redirect("/MainMenu");
+  console.log(myid);
+  console.log(employeeModel.find({'empID': myid}));
+  return employeeModel.find({'empID': myid},(err, doc)=> {
+    if(doc.length === 0 || err){
+      console.log(doc);
+      res.status(403).send("Access denied.");
+      // res.send(403, "No rights to access");
+    }else{
+      console.log(doc);
+      res.redirect("/MainMenu");
+    }
+  })
 });
 
 app.get("/MainMenu", (req, res) => {
@@ -184,13 +192,16 @@ app.post("/category", async (req, res) => {
     let response = await inventoryModel.updateOne(
     {itemname: cartItems[i]},
     {$inc: {Stock: -1,itemSold: 1}});
-  console.log(response);
+    console.log(response);
   }
+
+  let redir = { redirect: "/MainMenu"}
+  return res.json(redir);
   
   // res.sendFile(__dirname + '/MainMenu.html');
   // window.location.assign('/MainMenu')
 });
 
-app.listen(3000, () => {
-  console.log("Server is now running on port 3000");
+app.listen(port, () => {
+  console.log(`Server is now running on port ${port}`);
 });
