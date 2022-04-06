@@ -7,9 +7,13 @@ const categoryItemNames = Array.from(
 const modalHeader = document.querySelector(".modal");
 const subCatItemArr = Array.from(document.querySelectorAll(".sub-cat-item"));
 const orderNum = document.querySelector(".orderNum");
-const cartItems = [];
+let cartItems = [];
 let count = 0;
 let randomOrderNum = 0;
+let sele = 0;
+let itemPriceDouble = 0;
+let tax = 0;
+let total = 0;
 
 function generateOrderNum() {
   let random = Math.floor(1000 + Math.random() * 9000);
@@ -20,7 +24,6 @@ function generateOrderNum() {
 
 //click on each category will show the pop up to see sub-category
 categoryItemArr.forEach((item) => {
-  // console.log(item);
   item.addEventListener("click", popUp);
 });
 
@@ -101,34 +104,86 @@ function popUp(event) {
       })
       break;
     case "Frozen Food":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Frozen_Food")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Prepared Food":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Prepared_Food")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Pantry":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        console.log(item.firstElementChild.className);
+        if(!(item.firstElementChild.className == "Pantry")){
+          item.style.display = "none";
+        }
+      })
       break;
-    case "Pet care":
-      
+    case "Pet Care":
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        console.log(item.firstElementChild.className);
+        if(!(item.firstElementChild.className == "Pet_Care")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Floral &amp; Garden":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Floral_and_Garden")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "International":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "International")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Baby Care":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Baby_Care")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Home":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Home")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Health &amp; Beauty":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Health_and_Beauty")){
+          item.style.display = "none";
+        }
+      })
       break;
     case "Cleaning":
-      
+      subCatItemArr.forEach((item)=> {
+        item.style.display = "grid";
+        if(!(item.firstElementChild.className == "Cleaning")){
+          item.style.display = "none";
+        }
+      })
       break;
   }
 }
@@ -142,18 +197,17 @@ subCatItemArr.forEach((item) => {
   item.addEventListener("click", addToCart);
 });
 
-//when sub-cat-item is selected
-let sele = 0;
-let itemPriceDouble = 0;
-let tax = 0;
-let total = 0;
 
 //Add items from category to order
 function addToCart() {
   // console.log(this.children[3].innerHTML);
   let itemName = this.children[1].innerText;
-  let itemPrice = this.children[3].innerHTML;
+  let itemPrice = this.children[2].innerText.slice(1);
+  console.log(this.children[2].innerText.replace('$', ''));
+  console.log(this.children.innerText);
+  console.log(itemPrice);
   // itemPrice = itemPrice.slice(1, 5);
+  // console.log(itemPrice);
   let itemPriceParse = parseFloat(itemPrice);
   console.log(itemPriceParse);
   // count += 1;
@@ -199,9 +253,13 @@ function addToCart() {
 
 document.addEventListener("click", function (e) {
   if (e.target && e.target.className == "del") {
-    console.log(e.target.parentElement);
+    
+    // console.log(e.target.parentElement);
+    // console.log(e.target.parentElement.children[0].innerText); //item name
+    // console.log(e.target.parentElement.children[1].innerText.slice(1));
+    // debugger;
     price = parseFloat(
-      e.target.parentElement.children[1].innerHTML.slice(1, 5)
+      e.target.parentElement.children[1].innerText.slice(1)
     );
     const itemName = Array.from(e.target.parentElement.children)
       .find(el => el.classList.contains("iName")).innerText;
@@ -258,34 +316,30 @@ document
 
 document.querySelector('#pay').addEventListener('click',(e)=>{
   e.preventDefault();
-  document.querySelector('.modal-pay').style.visibility = "visible";
-
-  const cartItems = document.querySelectorAll('.cart-items');
-  // const cartItemsArr = Array.from(cartItems);
-  // cartItemsArr.forEach(item => {
-  //   if(item) item.remove();
-  // })
-
-  const iName = document.querySelectorAll('.iName');
-  const iNameArr = Array.from(iName);
-
-  let countItem = 0;
-  iNameArr.forEach(iName => {
-    // console.log(iName.innerHTML);
-    countItem++;
-    // document.querySelector('.items-in-cart').insertAdjacentHTML(`afterend`,
-    // `<input type="text" class="cart-items" name="purchaseditem${countItem}" id="purchaseditem${countItem}" value="${iName.innerHTML}" disabled>`)
-    
+  alert("payment completed");
+  axios.post('/category', { cartItems })
+  .then(function(res){
+    console.log(res);
   })
-  // console.log("name: " + iNameArr[0].innerHTML);
-  console.log(document.querySelector('#purchaseditem1'));
-  document.querySelector('#purchaseditem1').value = iNameArr[0].innerHTML;
+  .then(function(response){
+    if(response.data.redirect == '/MainMenu'){
+      window.location = "/MainMenu"
+    }
+  })
+  .catch(function(err){
+    window.location = "/Login"
+  })
+  // alert("Thank you for shopping at Delight grocery store!")
+  
 
-  let grandTotal = document.querySelector("#total").innerHTML;
-  // console.log(`Now total: ${total}`);
-  document.querySelector('#grandtotal').value = grandTotal;
+  //remove items from cart
+  // let purchasedItems = Array.from(document.querySelectorAll('.purchased'));
+  // purchasedItems.forEach(ele => {
+  //   ele.remove();
+  // })
+  
 })
 
-document.querySelector("#pay-button-cancel").addEventListener('click',()=>{
-  document.querySelector('.modal-pay').style.visibility = "hidden";
-})
+// document.querySelector("#pay-button-cancel").addEventListener('click',()=>{
+//   document.querySelector('.modal-pay').style.visibility = "hidden";
+// })

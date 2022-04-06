@@ -46,7 +46,7 @@
                 <div class="category-item"><img class="category-item-img" src="/images/seasoning.png" alt="">
                     Pantry</div>
                 <div class="category-item"><img class="category-item-img" src="/images/pet-food.png" alt="">
-                    Pet care</div>
+                    Pet Care</div>
                 <div class="category-item"><img class="category-item-img" src="/images/gardening.png" alt="">
                     Floral & Garden
                 </div>
@@ -130,11 +130,11 @@
                     <input type="button" class="functionBtns-item" value="Discount">
                 </form>
                     <input id="pay" type="button" class="functionBtns-item" value="Pay">
-                <form action="" method="get">
-                    <input type="button" class="functionBtns-item" value="Customer Info">
-                </form>
                 <form action="/MainMenu" method="get">
                     <input type="submit" class="functionBtns-item" value="Back to Menu">
+                </form>
+                <form action="/Login" method="get">
+                    <input type="button" class="functionBtns-item" value="Exit System">
                 </form>
             </div>
         </div>
@@ -155,77 +155,13 @@
                             <span class="<%= item.itemcategory %>"></span>
                             <p class="item-name">
                                 <%= item.itemname %>
-                            </p><span>$</span>
+                            </p>
                             <span class="item-price">
-                                <%= item.itemPrice %>
-                                    <span>/each</span>
+                                $<%= item.itemPrice %>
                             </span>
+                            <span>/each</span>
                         </div>
                         <% }) %>
-                            <!-- <div class="sub-cat-item">
-                        <p class="item-name">Apple</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Banana</p>
-                        <p class="item-price">$2.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Peach</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Pineapple</p>
-                        <p class="item-price">$3.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Grapes</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Grava</p>
-                        <p class="item-price">$3.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Tomato</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Potato</p>
-                        <p class="item-price">$3.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Celery</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Cabbage</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Kale</p>
-                        <p class="item-price">$3.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Lettuce</p>
-                        <p class="item-price">$3.99 <span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Bok Choy</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Spinach</p>
-                        <p class="item-price">$1.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Romaine Hearts</p>
-                        <p class="item-price">$2.99<span>/each</span></p>
-                    </div>
-                    <div class="sub-cat-item">
-                        <p class="item-name">Green peper</p>
-                        <p class="item-price">$5.99<span>/each</span></p>
-                    </div> -->
         </div>
         <hr class="bar">
         <p class="selected-items"></p>
@@ -235,6 +171,7 @@
         <!-- <button class="ok">OK</button> -->
         <!-- </div> -->
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/category.js"></script>
     <!-- <script src="index.js"></script> -->
 </body>
