@@ -173,7 +173,7 @@ const whiteEggs = new Item({
   itemSold: 10,
 });
 
-const MarbleCheese = new Item({
+const marbleCheese = new Item({
   itemcategory: "Dairy and eggs",
   itemId: 204,
   itemname: "Marble Cheddar Cheese",
@@ -799,7 +799,7 @@ const roastBeef = new Item({
   Stock: 10,
   itemSold: 10,
 });
-const TzatzikiYogurtDip = new Item({
+const tzatzikiYogurtDip = new Item({
   itemcategory: "Prepared Food",
   itemId: 805,
   itemname: "Tzatziki Yogurt Dip",
@@ -971,7 +971,7 @@ const wetDogFood = new Item({
   Stock: 10,
   itemSold: 10,
 });
-const TrainingPadForDog = new Item({
+const trainingPadForDog = new Item({
   itemcategory: "Pet Care",
   itemId: 1006,
   itemname: "Training Pads for Dog",
@@ -1029,7 +1029,7 @@ const allpurposeLiquidPlantFood = new Item({
   Stock: 10,
   itemSold: 10,
 });
-const HerbMix = new Item({
+const herbMix = new Item({
   itemcategory: "Floral and Garden",
   itemId: 1103,
   itemname: "Vegetable and Herb Mix",
@@ -1495,7 +1495,7 @@ const kitchenBags = new Item({
   Stock: 10,
   itemSold: 10,
 });
-const FacialTissues = new Item({
+const facialTissues = new Item({
   itemcategory: "Cleaning",
   itemId: 1605,
   itemname: "Facial Tissues",
@@ -1580,7 +1580,7 @@ Item.insertMany(
     partlySkimmedMilk,
     homogenizedMilk,
     whiteEggs,
-    MarbleCheese,
+    marbleCheese,
     saltedButter,
     sourCream,
     creamCheese,
@@ -1650,7 +1650,7 @@ Item.insertMany(
     cajunChicken,
     pepperoniPizzaStyle,
     roastBeef,
-    TzatzikiYogurtDip,
+    tzatzikiYogurtDip,
     watermelonChunks,
     cookedHam,
     fruitTray,
@@ -1673,7 +1673,7 @@ Item.insertMany(
     wetCatFood,
     dogTreats,
     wetDogFood,
-    TrainingPadForDog,
+    trainingPadForDog,
     largeBreedDentalDogTreats,
     exercisePen,
     dogHouse,
@@ -1681,7 +1681,7 @@ Item.insertMany(
     //garden
     antKiller,
     allpurposeLiquidPlantFood,
-    HerbMix,
+    herbMix,
     mouseTrap,
     lawnFertilizer,
     indoorPlantFoodSpikesTray,
@@ -1743,7 +1743,7 @@ Item.insertMany(
     parchment,
     garbageBages,
     kitchenBags,
-    FacialTissues,
+    facialTissues,
     broomWithDustpan,
     drainOpener,
     disinfectingWipes,
