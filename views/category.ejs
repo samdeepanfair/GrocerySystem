@@ -129,17 +129,24 @@
                 <form action="" method="get">
                     <input type="button" class="functionBtns-item" value="Discount">
                 </form>
+                <form action="/category" method="post">
                     <input id="pay" type="button" class="functionBtns-item" value="Pay">
+                </form>
                 <form action="/MainMenu" method="get">
                     <input type="submit" class="functionBtns-item" value="Back to Menu">
                 </form>
                 <form action="/Login" method="get">
-                    <input type="button" class="functionBtns-item" value="Exit System">
+                    <input type="submit" class="functionBtns-item" value="Exit System">
                 </form>
             </div>
         </div>
     </div>
-
+    <div class="modal-pay">
+        <div class="pay-header">
+            <h3>PAYMENT COMPLETED</h3>
+            <img src="/images/check.png" width="128px" style="margin: 0 auto;" height="128px" alt="" srcset="">
+        </div>
+    </div>
     <!-- pop up for each categories -->
     <div class="modal">
         <div class="header">
@@ -165,12 +172,9 @@
         </div>
         <hr class="bar">
         <p class="selected-items"></p>
-        <!-- <p class="num-of-items-selected">Number of items selected:</p> -->
-        <!-- <div class="modal-del-com-btn"> -->
-        <!-- <button class="delete">DELETE ALL</button> -->
-        <!-- <button class="ok">OK</button> -->
-        <!-- </div> -->
     </div>
+
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/category.js"></script>
     <!-- <script src="index.js"></script> -->

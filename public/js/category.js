@@ -202,9 +202,10 @@ subCatItemArr.forEach((item) => {
 function addToCart() {
   // console.log(this.children[3].innerHTML);
   let itemName = this.children[1].innerText;
+  // console.log(this.children);
   let itemPrice = this.children[2].innerText.slice(1);
   console.log(this.children[2].innerText.replace('$', ''));
-  console.log(this.children.innerText);
+  // console.log(this.children.innerText);
   console.log(itemPrice);
   // itemPrice = itemPrice.slice(1, 5);
   // console.log(itemPrice);
@@ -316,20 +317,32 @@ document
 
 document.querySelector('#pay').addEventListener('click',(e)=>{
   e.preventDefault();
-  alert("payment completed");
+  console.log(document.querySelector('.order-details').childNodes.length);
+  if(document.querySelector('.order-details').childNodes.length < 16){
+    alert("Please add items to cart");
+    window.location = "/category";
+  }
   axios.post('/category', { cartItems })
-  .then(function(res){
-    console.log(res);
-  })
+  // .then(function(res){
+  //   console.log(`Line 323 - category.js - ${JSON.stringify(res.data)}`);
+  // })
+  
   .then(function(response){
-    if(response.data.redirect == '/MainMenu'){
-      window.location = "/MainMenu"
-    }
+    // console.log(`Line 325: category.js - ${JSON.stringify(response.data)}`);
+    showPayModal();
+    
+    // if(response.data.redirect == '/MainMenu'){
+    //   console.log("test");
+    //   // window.location = "/MainMenu";
+    // }
+
+    setTimeout(() => window.location = "/MainMenu", 5000);
   })
   .catch(function(err){
-    window.location = "/Login"
+    // console.log("error happened");
+    console.log(`err: ${err.toString()}`);
+    // window.location = "/Login"
   })
-  // alert("Thank you for shopping at Delight grocery store!")
   
 
   //remove items from cart
@@ -340,6 +353,7 @@ document.querySelector('#pay').addEventListener('click',(e)=>{
   
 })
 
-// document.querySelector("#pay-button-cancel").addEventListener('click',()=>{
-//   document.querySelector('.modal-pay').style.visibility = "hidden";
-// })
+function showPayModal(){
+  document.querySelector('.modal-pay').style.visibility = "visible";
+  
+}

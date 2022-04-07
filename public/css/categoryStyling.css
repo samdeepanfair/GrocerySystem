@@ -258,7 +258,6 @@ input#search,
   text-align: center;
   margin-top: 1em;
   font-size: x-large;
-  background-color: rgb(135, 167, 228);
   height: 2em;
 }
 
@@ -275,7 +274,7 @@ label[for="grandtotal"],input[type="text"],.pay-button{
   font-size: smaller;
 }
 
-.pay-button{
+/* .pay-button{
   margin-top: 30px;
 }
 
@@ -287,4 +286,26 @@ label[for="grandtotal"],input[type="text"],.pay-button{
   background-color: rgb(135, 167, 228);
   border-radius: 0.5em;
   cursor: pointer;
+} */
+
+.modal-pay {
+  visibility: hidden;
+  /* opacity: 1; */
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 500px;
+  min-height: 300px;
+  box-shadow: 2px 2px 5px rgb(95, 94, 94);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.4s ease-in;
+}
+
+.pay-header>img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

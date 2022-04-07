@@ -73,6 +73,7 @@ app.get("/", (req,res)=> {
 })
 
 app.get("/Login", (req, res) => {
+  console.log(`I am in login thingy.`);
   res.sendFile(__dirname + "/Login.html");
 });
 
@@ -94,7 +95,7 @@ app.post("/Login", (req, res) => {
 });
 
 app.get("/MainMenu", (req, res) => {
-  console.log("I am in app.use()");
+  console.log("I am in main page");
   res.sendFile(__dirname + "/MainMenu.html");
 });
 
@@ -192,7 +193,7 @@ app.post("/category", async (req, res) => {
     let response = await inventoryModel.updateOne(
     {itemname: cartItems[i]},
     {$inc: {Stock: -1,itemSold: 1}});
-    console.log(response);
+    // console.log(response);
   }
 
   let redir = { redirect: "/MainMenu"}
