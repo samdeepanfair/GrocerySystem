@@ -250,7 +250,7 @@ table.db-table .Product:hover{
   background: rgba(0, 0, 0, 0.7);
 }
 
-.add-modal {
+.add-edit-modal {
   position: relative;
   width: 95%;
   max-width: 450px;
@@ -279,18 +279,18 @@ table.db-table .Product:hover{
   margin-bottom: 30px;
 }
 
-.add-form {
+.add-edit-form {
   font-size: 1.3rem;
   display: grid;
   grid-template-columns: 1.3fr 2fr;
   grid-gap: 20px;
 }
 
-.add-form-label {
+.add-edit-form-label {
   text-align: right;
 }
 
-.add-form-submit {
+.add-edit-form-submit {
   grid-column: 1/3;
   margin-top: 10px;
   height: 30px;

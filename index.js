@@ -17,9 +17,13 @@ app.set("view engine", "ejs");
 const conn = mongoose.createConnection("mongodb://localhost:27017/categoryDB", {
   useNewUrlParser: true,
 });
+
+
 const conn2 = mongoose.createConnection("mongodb://localhost:27017/empDB", {
   useNewUrlParser: true,
 });
+
+
 const itemSchema = mongoose.Schema({
   itemcategory: { type: String, required: true },
   itemId: { type: Number, required: true, unique: true },
@@ -28,6 +32,8 @@ const itemSchema = mongoose.Schema({
   Stock: { type: Number, required: true },
   itemSold: { type: Number, required: true },
 });
+
+
 const empSchema = mongoose.Schema({
   empID: { type: String, required: true, unique: true }, 
   firstName: { type: String, required: true },
@@ -37,6 +43,8 @@ const empSchema = mongoose.Schema({
   position: {type: String, required: true},
   SSN: { type: Number, required: true, unique: true },
 });
+
+
 const inventoryModel = conn.model("Item",itemSchema);
 const employeeModel = conn2.model("empItem",empSchema);
 
@@ -123,7 +131,26 @@ app.get("/Inventory", (req, res) => {
 });
 
 app.get("/Staffs", (req, res, next) => {
-  res.sendFile(__dirname + "/Staffs.html");
+  // res.sendFile(__dirname + "/Staffs.html");
+  return employeeModel.find(function(err, staffs) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log("Staff.ejs")
+      res.render("management", {
+        titleName: "Staff",
+        itemName: "Employee",
+        fields: {
+          col1: "First Name",
+          col2: "Last ID",
+          col3: "Employee ID",
+          col4: "Position",
+          col5: "Date of Birth"
+        },
+        staffs: staffs
+      }); 
+    }
+  });
 });
 
 app.get("/category", (req, res, next) => {
@@ -153,11 +180,12 @@ app.post("/insert-product", (req, res, next) => {
 
   newProduct.save();
 
-  res.redirect("/Inventory");
-
+  res.redirect("back");
 });
 
 app.post("/update-product", (req, res, next) => {
+  console.log(req.body.pCategory_edit);
+  console.log(req.body.pCategory_edit.innerHTML);
   var filterQuery = {'itemId': req.body.pID_edit};
   var updateQuery = {
     itemcategory: req.body.pCategory_edit,
@@ -168,10 +196,42 @@ app.post("/update-product", (req, res, next) => {
   
   inventoryModel.findOneAndUpdate(filterQuery, updateQuery, {upsert: true}, function(err, doc) {
       if (err) return res.send(500, {error: err});
-      return res.redirect("/Inventory");
+      return res.redirect("back");
   });
 
 });
+
+
+app.post("/delete-product", (req, res, next) => {
+
+  var deleteQuery = {'itemId': req.body.pid};
+
+  inventoryModel.findOneAndDelete(deleteQuery, function(err){
+    if (err) {
+      console.log("There is an error while deleting: " + err);
+    } else {
+      console.log("Successfully Deleted");
+        // res.redirect('Inventory');
+      }
+  })
+});
+
+app.post("/insert-staff", (req, res, next) => {
+
+  let newEmployee = new employeeModel({
+    empID: req.body.eID,
+    firstName: req.body.fName,
+    lastName: req.body.lName,
+    DOB: req.body.eDOB,
+    position: req.body.ePosition,
+    SSN: 0 //?? : should i add this field on form? or not? or delete the field on db? 
+  });
+
+  newEmployee.save();
+
+  res.redirect("back");
+});
+
 
 
 app.post("/category", async (req, res) => {
