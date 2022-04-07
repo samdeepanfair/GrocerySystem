@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const port = process.env.port || 3000;
 const mongoose = require("mongoose");
+const moment = require('moment'); //for date formatting
 // const inventoryModel = require("./inventoryModel");
 // const { name } = require("ejs");
 
@@ -147,7 +148,8 @@ app.get("/Staffs", (req, res, next) => {
           col4: "Position",
           col5: "Date of Birth"
         },
-        staffs: staffs
+        staffs: staffs,
+        moment: moment
       }); 
     }
   });
@@ -217,19 +219,20 @@ app.post("/delete-product", (req, res, next) => {
 });
 
 app.post("/insert-staff", (req, res, next) => {
-
+  console.log(req.body.eDOB);
+  var i = 0;
   let newEmployee = new employeeModel({
     empID: req.body.eID,
     firstName: req.body.fName,
     lastName: req.body.lName,
     DOB: req.body.eDOB,
     position: req.body.ePosition,
-    SSN: 0 //?? : should i add this field on form? or not? or delete the field on db? 
+    SSN: 6//?? : should i add this field on form? or not? or delete the field on db? 
   });
 
   newEmployee.save();
 
-  res.redirect("back");
+  res.redirect("back"); 
 });
 
 
