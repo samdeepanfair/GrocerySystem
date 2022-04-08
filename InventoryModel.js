@@ -13,6 +13,6 @@ const itemSchema = mongoose.Schema({
   itemSold: { type: Number, required: true },
 });
 
-const Item = conn.model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
 
 module.exports = Item;

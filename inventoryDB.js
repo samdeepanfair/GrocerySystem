@@ -1545,7 +1545,12 @@ const washingMachineCleaner = new Item({
 });
 //////////////////////////////////////////////////////////
 
-Item.deleteMany({});
+Item.deleteMany({})
+.then(function(){
+  console.log("Data deleted"); // Success
+}).catch(function(error){
+  console.log(error); // Failure
+});
 
 Item.insertMany(
   [
@@ -1760,4 +1765,5 @@ Item.insertMany(
   }
 );
 
+// mongoose.connection.close();
 // module.exports = Item;

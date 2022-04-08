@@ -11,7 +11,7 @@ const empSchema = mongoose.Schema({
   DOB: { type: Date, required: true },
   // address: { type: String, required: true },
   position: {type: String, required: true},
-  SSN: { type: Number, required: true, unique: true },
+  SSN: { type: Number, required: false, null: true}
 });
 
 const empItem = mongoose.model("empItem", empSchema);
@@ -21,7 +21,7 @@ const admin = new empItem({
     firstName: "Nelson",
     lastName: "Eng",
     DOB: 01/01/1999,
-    position: "manager",
+    position: "Manager",
     SSN: 900000001,
   });
 const employee1 = new empItem({
@@ -29,7 +29,7 @@ const employee1 = new empItem({
     firstName: "Joling",
     lastName: "Weng",
     DOB: 01/01/1999,
-    position: "cashier",
+    position: "Cashier",
     SSN: 900000002,
   });
 const employee2 = new empItem({
@@ -37,7 +37,7 @@ const employee2 = new empItem({
     firstName: "Sulgi",
     lastName: "Kim",
     DOB: 01/01/1999,
-    position: "cashier",
+    position: "Cashier",
     SSN: 900000003,
   });
 const employee3 = new empItem({
@@ -45,7 +45,7 @@ const employee3 = new empItem({
     firstName: "Tashmeet",
     lastName: "Singh",
     DOB: 01/01/1999,
-    position: "cashier",
+    position: "Cashier",
     SSN: 900000004,
   });
 const employee4 = new empItem({
@@ -53,7 +53,7 @@ const employee4 = new empItem({
     firstName: "Samdeep",
     lastName: "Singh",
     DOB: 01/01/1999,
-    position: "cashier",
+    position: "Cashier",
     SSN: 900000005,
   });
 
