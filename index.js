@@ -86,6 +86,7 @@ app.get("/Login", (req, res) => {
   res.sendFile(__dirname + "/Login.html");
 });
 
+
 app.post("/Login", (req, res) => {
   console.log("We are in Login page");
   let myid = req.body.myId;
@@ -106,6 +107,11 @@ app.post("/Login", (req, res) => {
 app.get("/MainMenu", (req, res) => {
   console.log("I am in main page");
   res.sendFile(__dirname + "/MainMenu.html");
+});
+
+app.get("/Charts", (req, res) => {
+  console.log("View Charts.");
+  res.sendFile(__dirname + "/Charts.html");
 });
 
 app.get("/Inventory", (req, res) => {

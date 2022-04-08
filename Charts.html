@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width",initial-scale=1.0/>
+        <title>Monthly</title>
+        <body>
+
+            <label for="monthsSales">Choose a month  :</label>
+
+<select name="monthsValue" id="monthsValue">
+  <option value="January">January</option>
+  <option value="February">February</option>
+  <option value="March">March</option>
+  <option value="April">April</option>
+  </select>
+  <button onclick="mySales()">Select Month</button>
+
+         <canvas id="myChart" aria-label="chart" role="img" height="700" width="1000">          
+         </canvas>
+        <script src="js/monthlysales.js"></script>
+        <style>
+            select{
+                align-self:top;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+                font-size: 1.5rem;
+                background-color: aliceblue;
+                border-color: black;
+                border-width: 0.1em;
+                border-radius: 5em;
+            }
+
+            button{
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+                font-size: 1.5rem;
+                background-color: rgb(249, 249, 250);
+                border-color: black;
+                border-width: 0.1em;
+               
+            }
+        </style>
+
+ <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    function mySales(){
+    var s = document.getElementById('monthsValue');
+    var item1 = s.options[s.selectedIndex].value;
+if (item1 = 1)
+ { 
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Fruits & Vegetables', 'Dairy & Eggs', 'Bakery', 'Meat & Seafood', 'Snacks & Cookies', 'Beverages','Frozen Food','Prepare Food',
+        'Pantry','Pet Care','Floral Garden','International','Baby care ','Home','Health & Beauty','Cleaning'],
+            datasets: [{
+                label: 'Units Sold ',
+                data: [14,45,98,68,78,47,58,69,25,14,78,36,85,24,59,0 ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+       
+        options:{
+            responsive:false,
+        },
+        tooltips:
+        {
+            bodyAlign:"center",
+        },
+        Animation:{
+            duration:5000,
+        }
+        
+        
+    
+    });
+}
+else if (item1 = 2) {
+        const myChart1 = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Fruits & Vegetables', 'Dairy & Eggs', 'Bakery', 'Meat & Seafood', 'Snacks & Cookies', 'Beverages','Frozen Food','Prepare Food',
+        'Pantry','Pet Care','Floral Garden','International','Baby care ','Home','Health & Beauty','Cleaning'],
+            datasets: [{
+                label: 'Units Sold ',
+                data: [0,45,98,0,78,47,58,69,25,14,78,36,85,24,0,56 ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+       
+        options:{
+            responsive:false,
+        },
+        tooltips:
+        {
+            bodyAlign:"center",
+        },
+        Animation:{
+            duration:5000,
+        }
+        
+        
+    
+    });
+}
+else if (item1 = 3) {
+    const myChart3 = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Fruits & Vegetables', 'Dairy & Eggs', 'Bakery', 'Meat & Seafood', 'Snacks & Cookies', 'Beverages','Frozen Food','Prepare Food',
+        'Pantry','Pet Care','Floral Garden','International','Baby care ','Home','Health & Beauty','Cleaning'],
+            datasets: [{
+                label: 'Units Sold ',
+                data: [14,45,98,68,78,47,58,69,25,14,78,36,85,24,59,56 ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+       
+        options:{
+            responsive:false,
+        },
+        tooltips:
+        {
+            bodyAlign:"center",
+        },
+        Animation:{
+            duration:5000,
+        }
+        
+        
+    
+    });
+}
+else if (item1 = 4) {
+    const myChart3 = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Fruits & Vegetables', 'Dairy & Eggs', 'Bakery', 'Meat & Seafood', 'Snacks & Cookies', 'Beverages','Frozen Food','Prepare Food',
+        'Pantry','Pet Care','Floral Garden','International','Baby care ','Home','Health & Beauty','Cleaning'],
+            datasets: [{
+                label: 'Units Sold ',
+                data: [14,45,98,68,78,47,58,69,25,14,78,36,85,24,59,56 ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+       
+        options:{
+            responsive:false,
+        },
+        tooltips:
+        {
+            bodyAlign:"center",
+        },
+        Animation:{
+            duration:5000,
+        }
+        
+        
+    
+    });
+}
+}
+
+         </script>
+         
+
+        </body>
+    </head>
+</html>
