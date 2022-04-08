@@ -68,7 +68,7 @@ document.getElementById("delete-btns").onclick = function(e) {
       axios.post('delete-staff', { eid })
       .then(function(res){
          console.log(res);
-         window.location = "/Staffs";
+         window.location.replace = "/Staffs";
       })
    }
    

@@ -38,7 +38,6 @@ const empSchema = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   DOB: { type: Date, required: true },
-  // address: { type: String, required: true },
   position: {type: String, required: true},
   SSN: { type: Number, required: false, null: true},
 });
@@ -228,7 +227,7 @@ app.post("/insert-staff", (req, res, next) => {
 
   newEmployee.save();
 
-  res.redirect("back"); 
+  res.redirect("/Staffs"); 
 });
 
 
@@ -256,6 +255,7 @@ app.post("/delete-staff", (req, res, next) => {
   employeeModel.findOneAndDelete(deleteQuery, function(err){
     if (err) {
       console.log("There is an error while deleting: " + err);
+      return res.send(500, {error: err});
     } else {
       console.log("Successfully Deleted");
       res.redirect('back');

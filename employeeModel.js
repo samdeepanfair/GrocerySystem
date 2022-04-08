@@ -11,7 +11,7 @@ const empSchema = mongoose.Schema({
   DOB: { type: Date, required: true },
   // address: { type: String, required: true },
   position: {type: String, required: true},
-  SSN: { type: Number, required: true, unique: true },
+  SSN: { type: Number, required: true, null: true },
 });
 
 const empItem = conn2.model("empItem", empSchema);

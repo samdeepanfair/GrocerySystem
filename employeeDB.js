@@ -57,9 +57,14 @@ const employee4 = new empItem({
     SSN: 900000005,
   });
 
-
-    
-  empItem.deleteMany({});
+  empItem.deleteMany({})
+  .then(function(){
+    console.log("Data deleted"); // Success
+  }).catch(function(error){
+    console.log(error); // Failure
+  });
+  
+  
   
   empItem.insertMany(
     [
