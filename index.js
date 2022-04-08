@@ -79,7 +79,7 @@ app.get("/", (req,res)=> {
 })
 
 app.get("/Login", (req, res) => {
-  console.log(`I am in login thingy.`);
+  console.log(`I am in login page`);
   res.sendFile(__dirname + "/Login.html");
 });
 
@@ -125,7 +125,7 @@ app.get("/Inventory", (req, res) => {
         items: items
       }); 
     }
-  });
+  }).sort({'itemId': 1});
 });
 
 app.get("/Staffs", (req, res, next) => {
@@ -148,7 +148,7 @@ app.get("/Staffs", (req, res, next) => {
         moment: moment
       }); 
     }
-  });
+  }).sort({'position': -1});
 });
 
 app.get("/category", (req, res, next) => {
@@ -193,7 +193,7 @@ app.post("/update-product", (req, res, next) => {
   
   inventoryModel.findOneAndUpdate(filterQuery_item, updateQuery_item, {upsert: true}, function(err, doc) {
       if (err) return res.send(500, {error: err});
-      return res.redirect("back");
+      res.redirect("back");
   });
 
 });
@@ -228,7 +228,7 @@ app.post("/insert-staff", (req, res, next) => {
 
   newEmployee.save();
 
-  res.redirect("/Staffs"); 
+  res.redirect("back");
 });
 
 
@@ -244,7 +244,7 @@ app.post("/update-staff", (req, res, next) => {
   
   employeeModel.findOneAndUpdate(filterQuery_staff, updateQuery_staff, {upsert: true}, function(err, doc) {
       if (err) return res.send(500, {error: err});
-      return res.redirect("/Staffs");
+      res.redirect("back");
   }); 
 
 });
@@ -262,7 +262,7 @@ app.post("/delete-staff", (req, res, next) => {
       let redir = { redirect: "/Staffs"}
       return res.json(redir);
       }
-  });
+  }).srot;
 });
 
 
