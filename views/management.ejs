@@ -115,8 +115,8 @@
                             <input type="text" name="eID" id="eID">
                         <label class="add-edit-form-label"><%= fields.col4 %> : </label>
                             <select name="ePosition" id="ePosition">
-                                <option>Admin</option>
-                                <option>Employee</option>
+                                <option>Cashier</option>
+                                <option>Manager</option>
                             </select>
                         <label class="add-edit-form-label"><%= fields.col5 %> :</label>
                         <input type="date" name="eDOB" id="eDOB">
@@ -130,7 +130,7 @@
 
         <div class="modal-container" id="edit-popup-product">
             <div class="add-edit-modal bg-gray">
-                <h4 class="modal-title">Edit Product</h4>
+                <h4 class="modal-title">Edit <%= titleName %></h4>
                 <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
                 <% if(titleName == "Inventory") { %>
                     <form action="/update-product" method="POST" class="add-edit-form">
@@ -171,15 +171,15 @@
                         <input type="text" name="fName_edit" id="fName_edit">
         
                         <label class="add-edit-form-label"><%= fields.col2 %> :</label>
-                        <input type="text" name="lName_edit" id="lName_edit" readonly>
+                        <input type="text" name="lName_edit" id="lName_edit">
         
                         <label class="add-edit-form-label"><%= fields.col3 %> :</label>
                         <input type="text" name="eID_edit" id="eID_edit" readonly>
         
                         <label class="add-edit-form-label"><%= fields.col4 %> : </label>
                         <select name="ePosition_edit" id="ePosition_edit">
-                            <option>Admin</option>
-                            <option>Employee</option>
+                            <option>Cashier</option>
+                            <option>Manager</option>
                         </select>
 
                         <label class="add-edit-form-label"><%= fields.col5 %> :</label>
@@ -199,6 +199,7 @@
             </div>
         </div>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/management.js"></script>
 </body>

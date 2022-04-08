@@ -1,19 +1,44 @@
+
 //get selected table row to edit-modal 
 var table = document.getElementById("db-table");
-var pid;
+var pid, eid;
 
-for(let i = 0; i < table.rows.length; i++){
+for(let i = 1; i < table.rows.length; i++){
    table.rows[i].onclick = function(e){
       e.preventDefault();
 
-      document.getElementById("pName_edit").value = this.cells[0].innerHTML;
-      document.getElementById("pID_edit").value = this.cells[1].innerHTML;
-      document.getElementById("pStock_edit").value = this.cells[3].innerHTML;
-      document.getElementById("pPrice_edit").value = this.cells[4].innerHTML;
-      // checkCategory(this.cells[2].innerHTML);
-      console.log(this.cells[1].innerHTML);
-      pid = Number.parseInt(this.cells[1].innerHTML);
+      //Inventory Management
+      if(document.getElementById("pName_edit")){
+         document.getElementById("pName_edit").value = this.cells[0].innerHTML;
+         document.getElementById("pID_edit").value = this.cells[1].innerHTML;
+         document.getElementById("pStock_edit").value = this.cells[3].innerHTML;
+         document.getElementById("pPrice_edit").value = this.cells[4].innerHTML;
+         
+         //TODO: CHECK HOW TO GET TEXT VANLUE FROM DROPDOWN AND MATCH TO EDIT MODAL 
+         // checkCategory(this.cells[2].innerHTML);
+         console.log(this.cells[1].innerHTML);
 
+         //for delete function
+         pid = Number.parseInt(this.cells[1].innerHTML);
+      } else {
+         //Staff Management
+         document.getElementById("fName_edit").value = this.cells[0].innerHTML;
+         document.getElementById("lName_edit").value = this.cells[1].innerHTML;
+         document.getElementById("eID_edit").value = this.cells[2].innerHTML;
+         
+         console.log(this.cells[4].innerHTML);
+
+         var edob = Date.parse(this.cells[4].innerHTML);
+         console.log(moment(edob).format('YYYY-MM-DD'));
+         document.getElementById("eDOB_edit").defaultValue = moment(edob).format('YYYY-MM-DD');
+     
+         eid = Number.parseInt(this.cells[2].innerHTML);
+      }
+      
+
+      
+
+      
       //TODO: CHECK HOW TO HAVE ONLY ONE ROW DARKER WHEN CLICKED 
       // for(let j = 0; j < table.rows.length; j++){
       //    if (table.rows[j].style.backgroundColor == "rgb(176, 176, 176)"){
@@ -32,11 +57,26 @@ document.getElementById("delete-btns").onclick = function(e) {
    e.preventDefault();
 
    console.log(pid);
-   axios.post('delete-product', { pid })
-   .then(function(res){
-      console.log(res);
-      window.location = "/Inventory";
-   })
+   console.log(eid);
+   if(pid){
+      axios.post('delete-product', { pid })
+      .then(function(res){
+         console.log("delete-product front");
+         window.location.href = "/Inventory";
+      })
+      .catch(function(err){
+         console.log('There is an error deleting product');
+      })
+   } else {  
+      axios.post('delete-staff', { eid })
+      .then(function(res){
+         window.location.href = "/Staffs";
+      })
+      .catch(function(err){
+         console.log('There is an error deleting employee');
+      })
+   }
+   
 }
 
 

@@ -4,13 +4,11 @@ const path = require("path");
 const port = process.env.port || 3000;
 const mongoose = require("mongoose");
 const moment = require('moment'); //for date formatting
-// const inventoryModel = require("./inventoryModel");
 // const { name } = require("ejs");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
@@ -40,9 +38,8 @@ const empSchema = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   DOB: { type: Date, required: true },
-  // address: { type: String, required: true },
   position: {type: String, required: true},
-  SSN: { type: Number, required: true, unique: true },
+  SSN: { type: Number, required: false, null: true},
 });
 
 
@@ -138,18 +135,17 @@ app.get("/Inventory", (req, res) => {
 });
 
 app.get("/Staffs", (req, res, next) => {
-  // res.sendFile(__dirname + "/Staffs.html");
+
   return employeeModel.find(function(err, staffs) {
     if(err) {
       console.log(err);
     } else {
-      console.log("Staff.ejs")
       res.render("management", {
         titleName: "Staff",
         itemName: "Employee",
         fields: {
           col1: "First Name",
-          col2: "Last ID",
+          col2: "Last Name",
           col3: "Employee ID",
           col4: "Position",
           col5: "Date of Birth"
@@ -192,17 +188,16 @@ app.post("/insert-product", (req, res, next) => {
 });
 
 app.post("/update-product", (req, res, next) => {
-  console.log(req.body.pCategory_edit);
-  console.log(req.body.pCategory_edit.innerHTML);
-  var filterQuery = {'itemId': req.body.pID_edit};
-  var updateQuery = {
+
+  var filterQuery_item = {'itemId': req.body.pID_edit};
+  var updateQuery_item = {
     itemcategory: req.body.pCategory_edit,
     itemname: req.body.pName_edit,
     itemPrice: req.body.pPrice_edit,
     Stock: req.body.pStock_edit
   }
   
-  inventoryModel.findOneAndUpdate(filterQuery, updateQuery, {upsert: true}, function(err, doc) {
+  inventoryModel.findOneAndUpdate(filterQuery_item, updateQuery_item, {upsert: true}, function(err, doc) {
       if (err) return res.send(500, {error: err});
       return res.redirect("back");
   });
@@ -217,30 +212,64 @@ app.post("/delete-product", (req, res, next) => {
   inventoryModel.findOneAndDelete(deleteQuery, function(err){
     if (err) {
       console.log("There is an error while deleting: " + err);
+      return res.send(500, {error: err});
     } else {
       console.log("Successfully Deleted");
-        // res.redirect('Inventory');
+      let redir = { redirect: "/Inventory"}
+      return res.json(redir);
       }
   })
 });
 
 app.post("/insert-staff", (req, res, next) => {
   console.log(req.body.eDOB);
-  var i = 0;
+
   let newEmployee = new employeeModel({
     empID: req.body.eID,
     firstName: req.body.fName,
     lastName: req.body.lName,
     DOB: req.body.eDOB,
-    position: req.body.ePosition,
-    SSN: 6//?? : should i add this field on form? or not? or delete the field on db? 
-  });
+    position: req.body.ePosition
+    });
 
   newEmployee.save();
 
-  res.redirect("back"); 
+  res.redirect("/Staffs"); 
 });
 
+
+app.post("/update-staff", (req, res, next) => {
+
+  var filterQuery_staff = {'empID': req.body.eID_edit};
+  var updateQuery_staff = {
+    firstName: req.body.fName_edit,
+    lastName: req.body.lName_edit,
+    DOB: req.body.eDOB_edit,
+    position: req.body.ePosition_edit
+  }
+  
+  employeeModel.findOneAndUpdate(filterQuery_staff, updateQuery_staff, {upsert: true}, function(err, doc) {
+      if (err) return res.send(500, {error: err});
+      return res.redirect("/Staffs");
+  }); 
+
+});
+
+app.post("/delete-staff", (req, res, next) => {
+
+  var deleteQuery = {'empID': req.body.eid};
+
+  employeeModel.findOneAndDelete(deleteQuery, function(err){
+    if (err) {
+      console.log("There is an error while deleting: " + err);
+      return res.send(500, {error: err});
+    } else {
+      console.log("Successfully Deleted");
+      let redir = { redirect: "/Staffs"}
+      return res.json(redir);
+      }
+  });
+});
 
 
 app.post("/category", async (req, res) => {
