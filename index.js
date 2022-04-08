@@ -209,7 +209,8 @@ app.post("/delete-product", (req, res, next) => {
       return res.send(500, {error: err});
     } else {
       console.log("Successfully Deleted");
-      res.redirect('back');
+      let redir = { redirect: "/Inventory"}
+      return res.json(redir);
       }
   })
 });
@@ -258,7 +259,8 @@ app.post("/delete-staff", (req, res, next) => {
       return res.send(500, {error: err});
     } else {
       console.log("Successfully Deleted");
-      res.redirect('back');
+      let redir = { redirect: "/Staffs"}
+      return res.json(redir);
       }
   });
 });

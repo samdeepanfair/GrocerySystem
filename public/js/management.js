@@ -62,13 +62,18 @@ document.getElementById("delete-btns").onclick = function(e) {
       axios.post('delete-product', { pid })
       .then(function(res){
          console.log("delete-product front");
-         window.location.replace = "/Inventory";
+         window.location.href = "/Inventory";
+      })
+      .catch(function(err){
+         console.log('There is an error deleting product');
       })
    } else {  
       axios.post('delete-staff', { eid })
       .then(function(res){
-         console.log(res);
-         window.location.replace = "/Staffs";
+         window.location.href = "/Staffs";
+      })
+      .catch(function(err){
+         console.log('There is an error deleting employee');
       })
    }
    
