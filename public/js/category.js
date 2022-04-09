@@ -211,15 +211,6 @@ function addToCart() {
   // console.log(itemPrice);
   let itemPriceParse = parseFloat(itemPrice);
   console.log(itemPriceParse);
-  // count += 1;
-  // if(count <= 10){
-  //   document.querySelector('.selected-items').innerHTML += `${this.children[0].innerText}\n ${this.children[1].innerText} + `;
-  // document.querySelector('.num-of-items-selected').innerHTML = `Number of items selected: ${count}`;
-  // }else{
-  //   document.querySelector('.selected-items').innerHTML = "";
-  //   document.querySelector('.num-of-items-selected').innerHTML = `Selected item over limitaiton`;
-  //   count = 0;
-  // }
 
   const item = `<div class="purchased">
                   <span class="iName">${itemName}</span>&nbsp
@@ -228,13 +219,6 @@ function addToCart() {
                   <hr class="item-hr">
                   
               </div>`;
-
-  // <div class="purchased-num">
-  //     <button class="minus">-</button>
-  //     <p class="quantity">1</p>
-  //     <button class="plus">+</button>
-  // </div>
-  // console.log(document.querySelector('.order-details').children[1]);
   document
     .querySelector(".order-details")
     .children[1].insertAdjacentHTML(`afterend`, `${item}`);
