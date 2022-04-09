@@ -1,6 +1,7 @@
 
 //get selected table row to edit-modal 
 var table = document.getElementById("db-table");
+var dropdown;
 var pid, eid;
 
 for(let i = 1; i < table.rows.length; i++){
@@ -9,25 +10,28 @@ for(let i = 1; i < table.rows.length; i++){
 
       //Inventory Management
       if(document.getElementById("pName_edit")){
+         dropdown = document.getElementById("pCategory_edit");
          document.getElementById("pName_edit").value = this.cells[0].innerHTML;
          document.getElementById("pID_edit").value = this.cells[1].innerHTML;
          document.getElementById("pStock_edit").value = this.cells[3].innerHTML;
          document.getElementById("pPrice_edit").value = this.cells[4].innerHTML;
          
-         checkCategory(this.cells[2].innerHTML);
+         checkCategory(dropdown, this.cells[2].innerHTML);
 
          //for delete function
          pid = Number.parseInt(this.cells[1].innerHTML);
       } else {
          //Staff Management
+         dropdown = document.getElementById("ePosition_edit");
          document.getElementById("fName_edit").value = this.cells[0].innerHTML;
          document.getElementById("lName_edit").value = this.cells[1].innerHTML;
          document.getElementById("eID_edit").value = this.cells[2].innerHTML;
          
-         console.log(this.cells[4].innerHTML);
+         // console.log(this.cells[3].innerHTML);
+         checkCategory(dropdown, this.cells[3].innerHTML);
 
          var edob = Date.parse(this.cells[4].innerHTML);
-         console.log(moment(edob).format('YYYY-MM-DD'));
+         // console.log(moment(edob).format('YYYY-MM-DD'));
          document.getElementById("eDOB_edit").defaultValue = moment(edob).format('YYYY-MM-DD');
      
          eid = Number.parseInt(this.cells[2].innerHTML);
@@ -71,11 +75,10 @@ document.getElementById("delete-btns").onclick = function(e) {
 
 
 
-function checkCategory(text){
-   var select = document.getElementById("pCategory_edit");
+function checkCategory(select, text){
    Array.from(select.options).forEach(element => {
       if(element.text == text){
-         console.log(element.value);
+         // console.log(element.value);
          select.value = element.value;
       }
    });
