@@ -10,8 +10,24 @@
 body {
   min-width: 100%;
 }
+.bg-gray {
+  background-color: #e6e6e6;
+}
 .content-wrapper {
   display: flex;
+}
+
+.content-wrapper-lg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  min-height: 90%;
+  text-align: center;
+  background-color: white;
+  border-radius: 25px;
+  padding: 20px;
 }
 
 #category-part {
