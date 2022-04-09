@@ -151,6 +151,11 @@ h4 {
     transition: all 0.4s; */
 }
 
+.errorMsg{
+  margin-bottom: 15px;
+  color: rgb(197, 3, 3);
+}
+
 /**************** Main Menu Page ****************/
 
 .menu-btns {
@@ -194,7 +199,7 @@ h4 {
   border-radius: 8px;
 }
 
-#monthsValue {
+#monthsValue, #yearsValue {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
   font-size: 1.2rem;
   margin-right: 8px;

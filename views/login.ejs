@@ -16,7 +16,7 @@
         <div class="centered">
             <form method="POST" action="/Login">
                 <h3> Welcome</h3>
-                <p></p>
+                <p class="errorMsg"><%= errorMsg %></p>
                 <input class="input-login non-outline shadows" type="text" name="myId" placeholder="ID"> <br />
                 <input class="input-login non-outline shadows" type="password" name="myPassword" placeholder="Password"> <br />
                 <button class="btn-login non-outline shadows" type="submit">Sign In</button>

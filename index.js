@@ -80,7 +80,8 @@ app.get("/", (req,res)=> {
 
 app.get("/Login", (req, res) => {
   console.log(`I am in login page`);
-  res.sendFile(__dirname + "/Login.html");
+  // res.sendFile(__dirname + "/Login.html");
+  res.render("login", {errorMsg: ""});
 });
 
 
@@ -92,7 +93,8 @@ app.post("/Login", (req, res) => {
   return employeeModel.find({'empID': myid},(err, doc)=> {
     if(doc.length === 0 || err){
       console.log(doc);
-      res.status(403).send("Access denied.");
+      res.render("login", {errorMsg: "Please enter vaild id or password."});
+      // res.status(403).send("Access denied.");
       // res.send(403, "No rights to access");
     }else{
       console.log(doc);

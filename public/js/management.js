@@ -14,9 +14,7 @@ for(let i = 1; i < table.rows.length; i++){
          document.getElementById("pStock_edit").value = this.cells[3].innerHTML;
          document.getElementById("pPrice_edit").value = this.cells[4].innerHTML;
          
-         //TODO: CHECK HOW TO GET TEXT VANLUE FROM DROPDOWN AND MATCH TO EDIT MODAL 
-         // checkCategory(this.cells[2].innerHTML);
-         console.log(this.cells[1].innerHTML);
+         checkCategory(this.cells[2].innerHTML);
 
          //for delete function
          pid = Number.parseInt(this.cells[1].innerHTML);
@@ -35,20 +33,12 @@ for(let i = 1; i < table.rows.length; i++){
          eid = Number.parseInt(this.cells[2].innerHTML);
       }
       
-
-      
-
-      
-      //TODO: CHECK HOW TO HAVE ONLY ONE ROW DARKER WHEN CLICKED 
-      // for(let j = 0; j < table.rows.length; j++){
-      //    if (table.rows[j].style.backgroundColor == "rgb(176, 176, 176)"){
-      //       table.rows[j].style.backgroundColor == "rgb(230,230,230)";
-      //       console.log("same");
-      //    }
-      // }
-
+      //change selected row background color to dark gray
+      for(let j = 1; j < table.rows.length; j++){
+         //set all the row back to light gray
+         table.rows[j].style.backgroundColor = "#e6e6e6";
+      }
       this.style.backgroundColor = "#b0b0b0";
-      
    }
 }
 
@@ -111,4 +101,24 @@ for (var i = 0; i < closeBtn.length; i++) {
          if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
        }
     }
+}
+
+
+function searchItem(){ 
+   var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("input-search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("db-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
 }
