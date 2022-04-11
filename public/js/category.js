@@ -273,40 +273,14 @@ document
     document.querySelector(".modal").style.visibility = "hidden";
   });
 
-// document.querySelector('.ok').addEventListener('click',function(){
-//   document.querySelector('.modal').style.visibility = "hidden";
-// })
-
-// document.querySelector('.delete').addEventListener('click',()=>{
-//   document.querySelector('.selected-items').innerHTML = "";
-//   count = 0;
-//   document.querySelector('.num-of-items-selected').innerHTML = `Number of items selected: ${count}`;
-// })
-
-// let quantity = document.querySelector(".quantity").innerHTML;
-// let quantityNum = Number(document.querySelector(".quantity").innerHTML);
-
-// const quantityArr = Array.from(document.querySelectorAll(".quantity"));
-// const plusArr = Array.from(document.querySelectorAll(".plus"));
-// console.log(quantityArr);
-// quantityArr.forEach((qty) => {
-//   document.querySelector.addEventListener('click',()=>{
-//     quantityNum += 1;
-//     qty = `${quantityNum}`;
-//     qty.innerHTML = quantityNum;
-//     console.log(quantityNum);
-// })
-//   console.log("quantity add/deduct function not yet been done");
-// });
-
 document.querySelector('#pay').addEventListener('click',(e)=>{
   e.preventDefault();
   console.log(document.querySelector('.order-details').childNodes.length);
   if(document.querySelector('.order-details').childNodes.length < 16){
     alert("Please add items to cart");
     window.location = "/category";
-  }
-  axios.post('/category', { cartItems })
+  }else {
+    axios.post('/category', { cartItems })
   // .then(function(res){
   //   console.log(`Line 323 - category.js - ${JSON.stringify(res.data)}`);
   // })
@@ -327,7 +301,7 @@ document.querySelector('#pay').addEventListener('click',(e)=>{
     console.log(`err: ${err.toString()}`);
     // window.location = "/Login"
   })
-  
+  }
 
   //remove items from cart
   // let purchasedItems = Array.from(document.querySelectorAll('.purchased'));
