@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" ,initial-scale=1.0 />
+    <title>Sales Report</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="bg-gray">
+    <div class="content-wrapper-lg">
+        <div class="header-sales">
+            <h3>
+                Sales Report
+            </h3>
+            <hr class="sales-line lines">
+        </div>
+        <div class="btns-wrapper">
+            <form action="/MainMenu" method="GET">
+                <input type="submit" class="db-btns non-outline shadows" value="Back to Menu" />
+            </form>
+        </div>
+        <label class="sales-label" for="monthsSales">Choose a month : </label>
+        <select name="monthsValue" id="monthsValue">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <!-- <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option> -->
+        </select>
+        <!-- <select name="yearsValue" id="yearsValue">
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+        </select> -->
+        <button onclick="mySales()" class="sales-btn non-outline shadows">Generate</button>
+        <div id="chart-wrapper" class="chart-wrapper bg-gray">
+            <div id="loading" class="centered-item">
+                <h4>Please choose a month to generate a chart. </h4>
+            </div>
+            <div id="chartReport">
+                <canvas id="myChart" aria-label="chart" role="img"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/monthlysales.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+
+</html>
